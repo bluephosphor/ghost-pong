@@ -18,11 +18,15 @@ function received_packet(buffer){
 			ds_list_add(shell.output,_message);
 			break;
 		case network.move:
+			var _id = buffer_read(buffer,buffer_u8);
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
 
-			obj_player.x = _move_x;
-			obj_player.y = _move_y;
+			with (obj_player){
+				if (_id != identifier) break;
+				x = _move_x;
+				y = _move_y;
+			}
 			break;
 	}
 }
@@ -37,6 +41,7 @@ function send_string(str){
 function send_pos(){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.move);
+	buffer_write(client_buffer,buffer_u8,identifier);
 	buffer_write(client_buffer,buffer_u16,mouse_x);
 	buffer_write(client_buffer,buffer_u16,mouse_y);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
