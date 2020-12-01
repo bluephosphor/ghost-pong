@@ -10,7 +10,7 @@ function received_packet(buffer){
 			var _y = buffer_read(buffer,buffer_u16);
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
-			_player.identifier = _color_id;
+			_player.identifier = _color_id + 1;
 			_player.image_blend = colors[_color_id];
 			break;
 		case network.text: // text
