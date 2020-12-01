@@ -1,13 +1,15 @@
 {
   "resources": [
     {"id":{"name":"font_console","path":"fonts/font_console/font_console.yy",},"order":0,},
+    {"id":{"name":"r_menu","path":"rooms/r_menu/r_menu.yy",},"order":1,},
     {"id":{"name":"mc_client","path":"objects/mc_client/mc_client.yy",},"order":0,},
     {"id":{"name":"obj_shell","path":"objects/obj_shell/obj_shell.yy",},"order":2,},
     {"id":{"name":"COMMANDS","path":"scripts/COMMANDS/COMMANDS.yy",},"order":1,},
+    {"id":{"name":"con_game","path":"objects/con_game/con_game.yy",},"order":3,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
     {"id":{"name":"spr_block","path":"sprites/spr_block/spr_block.yy",},"order":0,},
     {"id":{"name":"NETWORK","path":"scripts/NETWORK/NETWORK.yy",},"order":0,},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
+    {"id":{"name":"r_game","path":"rooms/r_game/r_game.yy",},"order":0,},
   ],
   "Options": [
     {"name":"HTML5","path":"options/html5/options_html5.yy",},
@@ -24,7 +26,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"r_menu","path":"rooms/r_menu/r_menu.yy",},},
+    {"roomId":{"name":"r_game","path":"rooms/r_game/r_game.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

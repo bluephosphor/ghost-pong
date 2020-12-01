@@ -1,4 +1,5 @@
 enum network{
+	player_establish,
 	player_connect,
 	player_disconnect,
 	text,

@@ -22,7 +22,7 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_69FE7D8C","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_69FE7D8C","path":"rooms/r_game/r_game.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
@@ -50,7 +50,7 @@
     "path": "folders/Rooms.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Room1",
+  "name": "r_game",
   "tags": [],
   "resourceType": "GMRoom",
 }

@@ -1,15 +1,28 @@
+globalvar mysocket;
+
 function received_packet(buffer){
 	//CLIENT
 	msgid = buffer_read(buffer,buffer_u8);
 	
 	switch(msgid){
+		case network.player_establish:
+			var _socket = buffer_read(buffer,buffer_u8);
+			mysocket = _socket;
+			
+			buffer_seek(client_buffer,buffer_seek_start,0);
+			buffer_write(client_buffer,buffer_u8,network.player_establish);
+			buffer_write(client_buffer,buffer_string,con_game.client_username);
+			network_send_packet(client,client_buffer,buffer_tell(client_buffer));
+			break;
 		case network.player_connect:
 			var _socket = buffer_read(buffer,buffer_u8);
 			var _x = buffer_read(buffer,buffer_u16);
 			var _y = buffer_read(buffer,buffer_u16);
+			var _username = buffer_read(buffer,buffer_string);
 			
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
+			_player.username = _username;
 			_player.image_blend = colors[_socket];
 			
 			ds_map_add(socket_to_instanceid,_socket,_player);
