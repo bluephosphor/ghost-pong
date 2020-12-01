@@ -35,7 +35,6 @@ function received_packet(buffer,socket){
 			_player.x = _move_x;
 			_player.y = _move_y;
 				
-			
 			var i = 0; repeat (ds_list_size(socket_list)){
 				var _socket = socket_list[| i];
 				buffer_seek(server_buffer,buffer_seek_start,0);

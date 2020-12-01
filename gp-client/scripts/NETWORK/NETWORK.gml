@@ -5,14 +5,12 @@ function received_packet(buffer){
 	switch(msgid){
 		case network.player_connect:
 			var _socket = buffer_read(buffer,buffer_u8);
-			var _color_id = buffer_read(buffer,buffer_u8);
 			var _x = buffer_read(buffer,buffer_u16);
 			var _y = buffer_read(buffer,buffer_u16);
 			
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
-			_player.identifier = _color_id + 1;
-			_player.image_blend = colors[_color_id];
+			_player.image_blend = colors[_socket];
 			
 			ds_map_add(socket_to_instanceid,_socket,_player);
 			break;
