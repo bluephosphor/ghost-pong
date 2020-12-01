@@ -1,3 +1,2 @@
-var _socket = client + 1;
-if (socket != _socket) exit;
+if (socket != identifier) exit;
 send_pos();

@@ -1,1 +1,1 @@
-draw_text("client_id:" + string(client) + "obj_id:" + string(socket))
+draw_text(0,0," obj_id: " + string(socket) + " identifier: " + string(identifier));
