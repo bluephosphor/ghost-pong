@@ -13,6 +13,8 @@ max_speed = 3;
 frict = 0.5;
 
 state = playerstate_normal;
+resync_counter = 60;
+alarm[0] = resync_counter;
 
 enum input_packet{
 	move_x,
