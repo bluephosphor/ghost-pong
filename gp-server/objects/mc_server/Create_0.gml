@@ -28,7 +28,7 @@ function received_packet(buffer,socket){
 			var _username = buffer_read(buffer,buffer_string);
 			network_player_join(_username);
 			break;
-		case network.text: // text
+		case network.text: // chat
 			var _message = buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			send_string(_message);
