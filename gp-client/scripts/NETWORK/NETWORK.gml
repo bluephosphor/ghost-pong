@@ -8,25 +8,26 @@ function received_packet(buffer){
 			var _color_id = buffer_read(buffer,buffer_u8);
 			var _x = buffer_read(buffer,buffer_u16);
 			var _y = buffer_read(buffer,buffer_u16);
+			
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
 			_player.identifier = _color_id + 1;
 			_player.image_blend = colors[_color_id];
+			
+			ds_map_add(socket_to_instanceid,_socket,_player);
 			break;
 		case network.text: // text
 			var _message = buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			break;
 		case network.move:
-			var _id = buffer_read(buffer,buffer_u8);
+			var _sock = buffer_read(buffer,buffer_u8);
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
 
-			with (obj_player){
-				if (_id != identifier) break;
-				x = _move_x;
-				y = _move_y;
-			}
+			_player = socket_to_instanceid[? _sock];
+			_player.x = _move_x;
+			_player.y = _move_y;
 			break;
 	}
 }
