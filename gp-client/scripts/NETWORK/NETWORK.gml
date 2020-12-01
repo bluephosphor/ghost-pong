@@ -53,9 +53,9 @@ function received_packet(buffer){
 			var _special = buffer_read(buffer,buffer_bool);
 
 			_player				= socket_to_instanceid[? _sock];
-			_player.move.x		= [input_packet.move_x] = _move_x;
-			_player.move.y		= [input_packet.move_y] = _move_y;
-			_player.in_special	= [input_packet.special] = _special;
+			_player.move.x		= _move_x;
+			_player.move.y		= _move_y;
+			_player.in_special	= _special;
 			break;
 	}
 }
@@ -77,5 +77,5 @@ function send_pos(_x,_y){
 }
 
 function keyboard_update(){
-	return keyboard_check_pressed(vk_anykey) or keyboard_check_released(vk_anykey);
+	return (keyboard_check_pressed(vk_anykey) or keyboard_check_released(vk_anykey));
 }
