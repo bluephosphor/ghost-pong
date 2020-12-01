@@ -1,0 +1,1 @@
+draw_text("client_id:" + string(client) + "obj_id:" + string(socket))
