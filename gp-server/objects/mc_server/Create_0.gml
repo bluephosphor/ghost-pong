@@ -1,4 +1,5 @@
 enum network{
+	player_establish,
 	player_connect,
 	player_disconnect,
 	text,
@@ -23,6 +24,10 @@ function received_packet(buffer,socket){
 	//SERVER
 	msgid = buffer_read(buffer,buffer_u8);
 	switch(msgid){
+		case network.player_establish:
+			var _username = buffer_read(buffer,buffer_string);
+			network_player_join(_username);
+			break;
 		case network.text: // text
 			var _message = string(socket) + ": " + buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
