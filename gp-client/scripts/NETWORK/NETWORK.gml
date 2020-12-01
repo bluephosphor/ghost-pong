@@ -14,6 +14,12 @@ function received_packet(buffer){
 			
 			ds_map_add(socket_to_instanceid,_socket,_player);
 			break;
+		case network.player_disconnect:
+			var _socket = buffer_read(buffer,buffer_u8);
+			var _player = socket_to_instanceid[? _socket];
+			instance_destroy(_player);
+			ds_map_delete(socket_to_instanceid,_socket);
+			break;
 		case network.text: // text
 			var _message = buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);

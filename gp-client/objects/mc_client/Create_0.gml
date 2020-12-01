@@ -1,5 +1,6 @@
 enum network{
 	player_connect,
+	player_disconnect,
 	text,
 	move,
 }
@@ -14,4 +15,4 @@ client_buffer	= buffer_create(1024,buffer_fixed,1);
 socket_to_instanceid = ds_map_create();
 
 shell			= instance_create_layer(0,0,layer,obj_shell);
-colors			= [c_red,c_blue,c_yellow,c_green];
+colors			= [c_black,c_red,c_blue,c_yellow,c_green];

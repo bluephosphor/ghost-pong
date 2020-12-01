@@ -50,6 +50,14 @@ switch (type_event){
 		ds_list_add(shell.output,"client ID [" + string(_socket) + "] disconnected.");
 		with (socket_to_instanceid[? _socket]) instance_destroy();
 		ds_map_delete(socket_to_instanceid,_socket);
+		var i = 0; repeat (ds_list_size(socket_list)){
+			var _sock = socket_list[| i];
+			buffer_seek(server_buffer,buffer_seek_start,0);
+			buffer_write(server_buffer,buffer_u8,network.player_connect);
+			buffer_write(server_buffer,buffer_u8,_socket);
+			network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
+			i++;
+		}
 		break;
 	case network_type_data:
 		var _buffer = async_load[? "buffer"];
