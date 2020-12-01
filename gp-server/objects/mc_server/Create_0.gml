@@ -66,7 +66,7 @@ function send_string(str){
 	}
 }
 
-player_count	= 0;
+players_online = "0";
 player_spawn_x	= 100;
 player_spawn_y	= 100;
 colors			= [c_black,c_red,c_blue,c_yellow,c_green];

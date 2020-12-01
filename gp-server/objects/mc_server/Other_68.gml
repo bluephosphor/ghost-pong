@@ -35,3 +35,5 @@ switch (type_event){
 		received_packet(_buffer,socket);
 		break;
 }
+
+players_online = string(ds_list_size(socket_list));
