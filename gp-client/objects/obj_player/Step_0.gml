@@ -5,7 +5,6 @@ if (keyboard_update()){
 	var _len = array_length(input_sender);
 	//checking if any control inputs have changed
 	var i = 0; repeat(_len){
-		var _sent_packet = false;
 		if (input_sender[i] != inputs_sent[i]) {
 			//if so, send input buffer and update inputs_sent
 			buffer_seek(client_buffer,buffer_seek_start,0);
@@ -20,6 +19,5 @@ if (keyboard_update()){
 		}
 		i++;
 	}
-	
 }
 script_execute(state);
