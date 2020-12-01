@@ -29,7 +29,7 @@ function received_packet(buffer,socket){
 			network_player_join(_username);
 			break;
 		case network.text: // text
-			var _message = string(socket) + ": " + buffer_read(buffer,buffer_string);
+			var _message = buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			send_string(_message);
 			break;
