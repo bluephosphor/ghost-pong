@@ -46,6 +46,17 @@ function received_packet(buffer){
 			_player.x = _move_x;
 			_player.y = _move_y;
 			break;
+		case network.player_input:
+			var _sock = buffer_read(buffer,buffer_u8);
+			var _move_x = buffer_read(buffer,buffer_s8);
+			var _move_y = buffer_read(buffer,buffer_s8);
+			var _special = buffer_read(buffer,buffer_bool);
+
+			_player				= socket_to_instanceid[? _sock];
+			_player.move.x		= [input_packet.move_x] = _move_x;
+			_player.move.y		= [input_packet.move_y] = _move_y;
+			_player.in_special	= [input_packet.special] = _special;
+			break;
 	}
 }
 
@@ -57,10 +68,14 @@ function send_string(str){
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }
 
-function send_pos(){
+function send_pos(_x,_y){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.move);
-	buffer_write(client_buffer,buffer_u16,mouse_x);
-	buffer_write(client_buffer,buffer_u16,mouse_y);
+	buffer_write(client_buffer,buffer_u16,_x);
+	buffer_write(client_buffer,buffer_u16,_y);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
+}
+
+function keyboard_update(){
+	return keyboard_check_pressed(vk_anykey) or keyboard_check_released(vk_anykey);
 }

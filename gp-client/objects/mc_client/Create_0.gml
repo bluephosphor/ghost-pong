@@ -2,6 +2,7 @@ enum network{
 	player_establish,
 	player_connect,
 	player_disconnect,
+	player_input,
 	text,
 	move,
 }
