@@ -8,12 +8,12 @@ socket = -1;
 
 move = new vec2(0,0);
 spd = new vec2(0,0);
-accel = 1;
-max_speed = 3;
+accel = 3;
+max_speed = 6;
 frict = 0.5;
 
 state = playerstate_normal;
-resync_counter = 60;
+resync_counter = 30;
 alarm[0] = resync_counter;
 
 enum input_packet{
