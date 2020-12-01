@@ -9,9 +9,9 @@ max_clients = 6;
 
 network_create_server(network_socket_tcp,port,max_clients);
 
-server_buffer = buffer_create(1024,buffer_fixed,1);
-socket_list = ds_list_create();
-socket_to_instanceid = ds_map_create();
+server_buffer			= buffer_create(1024,buffer_fixed,1);
+socket_list				= ds_list_create();
+socket_to_instanceid	= ds_map_create();
 
 globalvar server, shell, player_count; 
 server = id;
@@ -59,7 +59,7 @@ function send_string(str){
 	}
 }
 
-player_count = 0;
-player_spawn_x = 100;
-player_spawn_y = 100;
-colors = [c_red,c_blue,c_yellow,c_green];
+player_count	= 0;
+player_spawn_x	= 100;
+player_spawn_y	= 100;
+colors			= [c_red,c_blue,c_yellow,c_green];

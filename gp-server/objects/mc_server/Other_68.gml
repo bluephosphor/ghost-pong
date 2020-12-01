@@ -17,14 +17,19 @@ switch (type_event){
 		buffer_write(server_buffer,buffer_u8,_color_id);
 		buffer_write(server_buffer,buffer_u16,_player.x);
 		buffer_write(server_buffer,buffer_u16,_player.y);
-		network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+		var i = 0; repeat (ds_list_size(socket_list)){
+			var _socket = socket_list[| i];
+			network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+			i++;
+		}
 		break;
 	case network_type_disconnect:
 		var _socket = async_load[? "socket"];
 		ds_list_delete(socket_list,ds_list_find_index(socket_list,_socket));
 		ds_list_add(shell.output,"client ID [" + string(_socket) + "] disconnected.");
-		
 		with (socket_to_instanceid[? _socket]) instance_destroy();
+		ds_map_delete(socket_to_instanceid,_socket);
+		player_count--;
 		break;
 	case network_type_data:
 		var _buffer = async_load[? "buffer"];
