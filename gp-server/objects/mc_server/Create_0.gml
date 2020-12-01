@@ -28,6 +28,7 @@ function received_packet(buffer,socket){
 			send_string(_message);
 			break;
 		case network.move:
+			var _id = buffer_read(buffer,buffer_u8);
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
 			
@@ -37,6 +38,7 @@ function received_packet(buffer,socket){
 				
 			buffer_seek(server_buffer,buffer_seek_start,0);
 			buffer_write(server_buffer,buffer_u8,network.move);
+			buffer_write(server_buffer,buffer_u8,_id);
 			buffer_write(server_buffer,buffer_u16,_move_x);
 			buffer_write(server_buffer,buffer_u16,_move_y);
 			var i = 0; repeat (ds_list_size(socket_list)){
