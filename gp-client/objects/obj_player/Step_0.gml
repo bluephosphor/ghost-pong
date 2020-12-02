@@ -14,7 +14,6 @@ if (keyboard_update()){
 			buffer_write(client_buffer,buffer_bool,input_sender[input_packet.special]);
 			network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 			array_copy(inputs_sent,0,input_sender,0,_len);
-			show_debug_message("sent an input packet!");
 			break;
 		}
 		i++;
