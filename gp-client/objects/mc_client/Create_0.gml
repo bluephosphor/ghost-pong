@@ -3,6 +3,7 @@ enum network{
 	player_connect,
 	player_disconnect,
 	player_input,
+	ball_update,
 	text,
 	move,
 }

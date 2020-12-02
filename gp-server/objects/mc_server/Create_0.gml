@@ -3,6 +3,7 @@ enum network{
 	player_connect,
 	player_disconnect,
 	player_input,
+	ball_update,
 	text,
 	move,
 }
@@ -12,14 +13,14 @@ max_clients = 6;
 
 network_create_server(network_socket_tcp,port,max_clients);
 
-server_buffer			= buffer_create(1024,buffer_fixed,1);
-socket_list				= ds_list_create();
-socket_to_instanceid	= ds_map_create();
-
-globalvar server, shell, player_count; 
+globalvar server, shell, server_buffer, socket_list, socket_to_instanceid;
 server = id;
 shell  = instance_create_layer(0,0,layer,obj_shell);
 shell.open();
+
+server_buffer			= buffer_create(1024,buffer_fixed,1);
+socket_list				= ds_list_create();
+socket_to_instanceid	= ds_map_create();
 
 function received_packet(buffer,socket){
 	//SERVER
@@ -93,4 +94,31 @@ function send_string(str){
 players_online = "0";
 player_spawn_x	= 100;
 player_spawn_y	= 100;
-colors			= [c_black,c_red,c_blue,c_yellow,c_green];
+colors			= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
+ball = {
+	radius: 5,
+	x: room_width div 2,
+	y: room_width div 2,
+	spd: {x: 1, y: 0.5,},
+	frict: 0.1,
+	
+	update: function(){
+		self.x += self.spd.x;
+		self.y += self.spd.y;
+		if (self.x > room_width  or self.x < 0) self.spd.x = -self.spd.x;
+		if (self.y > room_height or self.y < 0) self.spd.y = -self.spd.y;
+		
+		buffer_seek(server_buffer,buffer_seek_start,0);
+		buffer_write(server_buffer,buffer_u8,network.ball_update);
+		buffer_write(server_buffer,buffer_u16,ceil(self.x));
+		buffer_write(server_buffer,buffer_u16,ceil(self.y));
+		var i = 0; repeat (ds_list_size(socket_list)){
+			var _socket = socket_list[| i];
+			network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+			i++;
+		}
+	},
+	draw: function(){
+		draw_circle(self.x,self.y,self.radius,false);
+	}
+}

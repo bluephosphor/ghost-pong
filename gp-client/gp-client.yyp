@@ -12,6 +12,7 @@
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
     {"id":{"name":"spr_block","path":"sprites/spr_block/spr_block.yy",},"order":0,},
     {"id":{"name":"NETWORK","path":"scripts/NETWORK/NETWORK.yy",},"order":0,},
+    {"id":{"name":"obj_ball","path":"objects/obj_ball/obj_ball.yy",},"order":5,},
     {"id":{"name":"r_game","path":"rooms/r_game/r_game.yy",},"order":0,},
   ],
   "Options": [
