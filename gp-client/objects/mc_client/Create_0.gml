@@ -8,7 +8,7 @@ enum network{
 	move,
 }
 
-globalvar port, client, connected, client_buffer, shell, colors;
+globalvar port, client, connected, client_buffer, shell, colors, ball;
 
 port			= 682;
 mysocket = "";
@@ -19,4 +19,5 @@ client_buffer	= buffer_create(1024,buffer_fixed,1);
 socket_to_instanceid = ds_map_create();
 
 shell			= instance_create_layer(0,0,layer,obj_shell);
+ball			= instance_create_layer(0,0,layer,obj_ball);
 colors			= [c_black,c_red,c_blue,c_yellow,c_green];

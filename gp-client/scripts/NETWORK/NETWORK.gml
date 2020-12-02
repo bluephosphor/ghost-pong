@@ -1,4 +1,4 @@
-globalvar mysocket, ball;
+globalvar mysocket;
 
 function received_packet(buffer){
 	//CLIENT
@@ -38,13 +38,21 @@ function received_packet(buffer){
 			ds_list_add(shell.output,_message);
 			break;
 		case network.move:
-			var _sock = buffer_read(buffer,buffer_u8);
+			var _sock   = buffer_read(buffer,buffer_u8);
+			
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
+			
+			var _ball_x = buffer_read(buffer,buffer_u16);
+			var _ball_y = buffer_read(buffer,buffer_u16);
+			
+			ball.x = _ball_x;
+			ball.y = _ball_y;
 
 			_player = socket_to_instanceid[? _sock];
 			_player.x = _move_x;
 			_player.y = _move_y;
+			
 			break;
 		case network.player_input:
 			var _sock = buffer_read(buffer,buffer_u8);
@@ -60,7 +68,7 @@ function received_packet(buffer){
 		case network.ball_update:
 			var _ball_x = buffer_read(buffer,buffer_u16);
 			var _ball_y = buffer_read(buffer,buffer_u16);
-			if (!instance_exists(obj_ball)) ball = instance_create_layer(0,0,layer,obj_ball);
+			
 			ball.x = _ball_x;
 			ball.y = _ball_y;
 			break;
