@@ -43,15 +43,17 @@ function received_packet(buffer){
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
 			
-			var _ball_x = buffer_read(buffer,buffer_u16);
-			var _ball_y = buffer_read(buffer,buffer_u16);
+			var _ball_x = buffer_read(buffer,buffer_f32);
+			var _ball_y = buffer_read(buffer,buffer_f32);
 			
 			ball.x = _ball_x;
 			ball.y = _ball_y;
 
-			_player = socket_to_instanceid[? _sock];
-			_player.x = _move_x;
-			_player.y = _move_y;
+			if (!ds_map_empty(socket_to_instanceid)){
+				_player = socket_to_instanceid[? _sock];
+				_player.x = _move_x;
+				_player.y = _move_y;
+			}
 			
 			break;
 		case network.player_input:
@@ -66,8 +68,8 @@ function received_packet(buffer){
 			_player.in_special	= _special;
 			break;
 		case network.ball_update:
-			var _ball_x = buffer_read(buffer,buffer_u16);
-			var _ball_y = buffer_read(buffer,buffer_u16);
+			var _ball_x = buffer_read(buffer,buffer_f32);
+			var _ball_y = buffer_read(buffer,buffer_f32);
 			
 			ball.x = _ball_x;
 			ball.y = _ball_y;

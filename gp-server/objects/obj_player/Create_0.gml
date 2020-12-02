@@ -8,3 +8,8 @@ enum input_packet{
 	special,
 	enum_length,
 }
+
+x_last = x;
+y_last = y;
+
+velocity = new vec2(0,0);

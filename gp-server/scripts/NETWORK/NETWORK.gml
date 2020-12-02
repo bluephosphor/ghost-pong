@@ -48,3 +48,8 @@ function network_player_join(username){
 		i++;
 	}
 }
+
+function vec2(x,y) constructor{
+	self.x = x;
+	self.y = y;
+}
