@@ -116,20 +116,17 @@ ball = {
 		self.y = room_height div 2;
 		self.spd = {x: 0, y: 0,};
 		self.frict = 0.005;
-		self.hitbuffer = 20;
+		self.hitbuffer = 30;
 	},
 	
 	update: function(){
 		var _collided = collision_circle(self.x,self.y,self.radius,obj_player,false,false);
 		if (hitbuffer <= 0 and _collided != noone) {
-			if (_collided.velocity.x != 0 or _collided.velocity.y != 0){
-				self.spd.x += (_collided.velocity.x * 1.5);
-				self.spd.y += (_collided.velocity.y * 1.5);
-				hitbuffer = 20;
-			} else {
 				self.spd.x = -self.spd.x;
 				self.spd.y = -self.spd.y;
-			}
+				self.spd.x += (_collided.velocity.x);
+				self.spd.y += (_collided.velocity.y);
+				hitbuffer = 30;
 		}
 		self.spd.x = lerp(self.spd.x,0,self.frict);
 		self.spd.y = lerp(self.spd.y,0,self.frict);
