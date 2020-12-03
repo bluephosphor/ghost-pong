@@ -16,7 +16,8 @@ hands = {
 	animation_ended:	false,
 	
 	update: function(){
-		var _attacking		= (obj_player.state == playerstate_attack);
+		var _id = mc_client.socket_to_instanceid[? mysocket];
+		var _attacking		= (_id.state == playerstate_attack);
 		var _step_limit		= _attacking ? self.attack_speed : self.idle_speed;
 		var _anim_limit		= _attacking ? self.attack_frame_end : self.idle_frame_end;
 		
