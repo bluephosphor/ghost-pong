@@ -12,7 +12,7 @@ myhands = new hands(equipped);
 //movement variables
 move = new vec2(0,0);
 spd = new vec2(0,0);
-accel =		{normal: 0.5,teleport: 0.3}
+accel =		{normal: 0.5,teleport: 1}
 max_speed = {normal: 4,	 teleport: 12};
 frict = 0.2;
 
