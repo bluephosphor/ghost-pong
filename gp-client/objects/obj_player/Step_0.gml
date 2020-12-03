@@ -1,3 +1,12 @@
+switch(state){
+	case playerstate_attack: face = 3; break;
+	default: face = 1;
+}
+script_execute(state);
+animate_hands();
+
+if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
+
 if (keyboard_update()){
 	input_sender[input_packet.move_x]  = keyboard_check(input[key.right]) - keyboard_check(input[key.left]);
 	input_sender[input_packet.move_y]  = keyboard_check(input[key.down]) - keyboard_check(input[key.up]);
@@ -19,14 +28,5 @@ if (keyboard_update()){
 		i++;
 	}
 }
-
-switch(state){
-	case playerstate_attack: face = 3; break;
-	default: face = 1;
-}
-script_execute(state);
-animate_hands();
-
-if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
 send_pos(x,y);

@@ -11,7 +11,7 @@ function received_packet(buffer){
 			
 			buffer_seek(client_buffer,buffer_seek_start,0);
 			buffer_write(client_buffer,buffer_u8,network.player_establish);
-			buffer_write(client_buffer,buffer_string,con_game.client_username);
+			buffer_write(client_buffer,buffer_string,mc_game.client_username);
 			network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 			break;
 		case network.player_connect:
@@ -80,7 +80,7 @@ function received_packet(buffer){
 function send_string(str){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.text);
-	buffer_write(client_buffer,buffer_string,con_game.client_username);
+	buffer_write(client_buffer,buffer_string,mc_game.client_username);
 	buffer_write(client_buffer,buffer_string,str);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }
@@ -88,7 +88,7 @@ function send_string(str){
 function send_command(str){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.player_command);
-	buffer_write(client_buffer,buffer_string,con_game.client_username);
+	buffer_write(client_buffer,buffer_string,mc_game.client_username);
 	buffer_write(client_buffer,buffer_string,str);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }

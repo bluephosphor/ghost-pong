@@ -10,5 +10,4 @@ enum input_packet{
 	enum_length,
 }
 
-
 velocity = new vec2(0,0);

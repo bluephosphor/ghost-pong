@@ -68,7 +68,7 @@ if (!isOpen) {
 			} else {
 				ds_list_add(output, consoleString);
 				ds_list_add(history, consoleString);
-				server.send_string("[SERVER]: " + consoleString);
+				send_string("[SERVER]: " + consoleString);
 				//ds_list_add(output, ">" + consoleString);
 				//ds_list_add(output, "No such command: " + consoleString);
 				//ds_list_add(history, consoleString);

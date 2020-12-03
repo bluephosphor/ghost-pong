@@ -1,13 +1,16 @@
 function playerstate_normal(){
-	spd.x += accel * move.x;
-	spd.y += accel * move.y;
+	image_alpha = lerp(image_alpha,1,0.01);
+	teleport_counter = approach(teleport_counter,0,1);
+	
+	spd.x += accel.normal * move.x;
+	spd.y += accel.normal * move.y;
 
 	var _spd = point_distance(0,0,spd.x,spd.y);
 	var _dir = point_direction(0,0,spd.x,spd.y);
 
-	if (_spd > max_speed){
-		spd.x = lengthdir_x(max_speed,_dir);
-		spd.y = lengthdir_y(max_speed,_dir);
+	if (_spd > max_speed.normal){
+		spd.x = lengthdir_x(max_speed.normal,_dir);
+		spd.y = lengthdir_y(max_speed.normal,_dir);
 	}
 
 	if (move.x == 0){
@@ -18,6 +21,26 @@ function playerstate_normal(){
 	if (move.y == 0){
 		spd.y = lerp(spd.y,0,frict);
 	}
+	if (in_special) state = playerstate_attack;
+	if (myhands.animation_ended) myhands.animation_ended = false;
+	move_and_collide();
+}
+
+function playerstate_teleport(){
+	image_alpha = lerp(image_alpha,0,0.01);
+	teleport_counter = approach(teleport_counter,teleport_length,1);
+	
+	spd.x += accel.teleport * move.x;
+	spd.y += accel.teleport * move.y;
+
+	var _spd = point_distance(0,0,spd.x,spd.y);
+	var _dir = point_direction(0,0,spd.x,spd.y);
+
+	if (_spd > max_speed.teleport){
+		spd.x = lengthdir_x(max_speed.teleport,_dir);
+		spd.y = lengthdir_y(max_speed.teleport,_dir);
+	}
+
 	if (in_special) state = playerstate_attack;
 	if (myhands.animation_ended) myhands.animation_ended = false;
 	move_and_collide();

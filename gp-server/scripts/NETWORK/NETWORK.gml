@@ -1,3 +1,104 @@
+function received_packet(buffer,socket){
+	//SERVER
+	msgid = buffer_read(buffer,buffer_u8);
+	switch(msgid){
+		case network.player_establish:
+			var _username = buffer_read(buffer,buffer_string);
+			network_player_join(_username);
+			break;
+		case network.text: // chat
+			var _message = buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
+			ds_list_add(shell.output,_message);
+			send_string("}" + _message);
+			break;
+		case network.player_command:
+			var _name	 = buffer_read(buffer,buffer_string);
+			var _command = buffer_read(buffer,buffer_string);
+			ds_list_add(shell.output,_name + "excecuted server command /" + _command);
+			switch(_command){
+				case "ballreset":
+					ball.init();
+					break;
+			}
+			break;
+		case network.move:
+			var _move_x = buffer_read(buffer,buffer_u16);
+			var _move_y = buffer_read(buffer,buffer_u16);
+			
+			var _player = socket_to_instanceid[? socket];
+			with (_player){
+				var _dir = point_direction(x,y,_move_x,_move_y);
+				velocity.x = lengthdir_x(1,_dir) * abs(_move_x - x); 
+				velocity.y = lengthdir_y(1,_dir) * abs(_move_y - y);
+				x = _move_x;
+				y = _move_y;
+			}
+				
+			var i = 0; repeat (ds_list_size(socket_list)){
+				var _sock = socket_list[| i];
+				if (_sock != socket){
+					buffer_seek(server_buffer,buffer_seek_start,0);
+					buffer_write(server_buffer,buffer_u8,network.move);
+					buffer_write(server_buffer,buffer_u8,socket);
+					buffer_write(server_buffer,buffer_u16,_move_x);
+					buffer_write(server_buffer,buffer_u16,_move_y);
+					buffer_write(server_buffer,buffer_f32,ball.x);
+					buffer_write(server_buffer,buffer_f32,ball.y);
+		
+					network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
+				} else {
+					buffer_seek(server_buffer,buffer_seek_start,0);
+					buffer_write(server_buffer,buffer_u8,network.ball_update);
+					buffer_write(server_buffer,buffer_f32,ball.x);
+					buffer_write(server_buffer,buffer_f32,ball.y);
+		
+					network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
+				}
+				i++;
+			}
+			break;
+		case network.player_input:
+			var _move_x = buffer_read(buffer,buffer_s8);
+			var _move_y = buffer_read(buffer,buffer_s8);
+			var _special = buffer_read(buffer,buffer_bool);
+			
+			var _player = socket_to_instanceid[? socket];
+			if (_move_x != 0) _player.image_xscale = _move_x;
+			if (_special) with (_player){
+				if (myhitbox = noone) {
+					myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
+					myhitbox.sprite_index = spr_hitbox_punch;
+					myhitbox.image_xscale = image_xscale;
+					myhitbox.myplayer = id;
+				}
+			}
+				
+			var i = 0; repeat (ds_list_size(socket_list)){
+				var _socket = socket_list[| i];
+				buffer_seek(server_buffer,buffer_seek_start,0);
+				buffer_write(server_buffer,buffer_u8,network.player_input);
+				buffer_write(server_buffer,buffer_u8,socket);
+				buffer_write(server_buffer,buffer_s8,_move_x);
+				buffer_write(server_buffer,buffer_s8,_move_y);
+				buffer_write(server_buffer,buffer_bool,_special);
+				network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+				i++;
+			}
+			break;
+	}
+}
+
+function send_string(str){
+	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_write(server_buffer,buffer_u8,network.text);
+	buffer_write(server_buffer,buffer_string,str);
+	var i = 0; repeat (ds_list_size(socket_list)){
+		var _socket = socket_list[| i];
+		network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+		i++;
+	}
+}
+
 function network_player_join(username){
 	
 	//create obj_player in server
