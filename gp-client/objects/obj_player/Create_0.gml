@@ -12,12 +12,13 @@ myhands = new hands(equipped);
 //movement variables
 move = new vec2(0,0);
 spd = new vec2(0,0);
-accel =		{normal: 0.5,teleport: 0.2}
+accel =		{normal: 0.5,teleport: 0.3}
 max_speed = {normal: 4,	 teleport: 12};
 frict = 0.2;
 
 teleport_length = 15;
 teleport_counter = 0;
+phase_speed = 0.3;
 
 state = playerstate_normal;
 face = 1;

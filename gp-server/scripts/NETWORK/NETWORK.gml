@@ -65,13 +65,16 @@ function received_packet(buffer,socket){
 			
 			var _player = socket_to_instanceid[? socket];
 			if (_move_x != 0) _player.image_xscale = _move_x;
-			if (_attack) with (_player){
-				if (myhitbox = noone) {
-					myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
-					myhitbox.sprite_index = spr_hitbox_punch;
-					myhitbox.image_xscale = image_xscale;
-					myhitbox.myplayer = id;
+			with (_player){
+				if (_attack) {
+					if (myhitbox = noone) {
+						myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
+						myhitbox.sprite_index = spr_hitbox_punch;
+						myhitbox.image_xscale = image_xscale;
+						myhitbox.myplayer = id;
+					}
 				}
+				playerstate = _special ? state.teleport : state.normal;
 			}
 				
 			var i = 0; repeat (ds_list_size(socket_list)){
