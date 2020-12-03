@@ -13,7 +13,7 @@ max_clients = 6;
 
 network_create_server(network_socket_tcp,port,max_clients);
 
-globalvar server, shell, server_buffer, socket_list, ball;
+globalvar server, shell, server_buffer, socket_list, ball, hitbox_data;
 server = id;
 shell  = instance_create_layer(0,0,layer,obj_shell);
 shell.open();
@@ -41,8 +41,9 @@ function received_packet(buffer,socket){
 			
 			var _player = socket_to_instanceid[? socket];
 			with (_player){
-				velocity.x = _move_x - x;
-				velocity.y = _move_y - y;
+				var _dir = point_direction(x,y,_move_x,_move_y);
+				velocity.x = lengthdir_x(1,_dir) * abs(_move_x - x); 
+				velocity.y = lengthdir_y(1,_dir) * abs(_move_y - y);
 				x = _move_x;
 				y = _move_y;
 			}
@@ -75,9 +76,16 @@ function received_packet(buffer,socket){
 			var _move_y = buffer_read(buffer,buffer_s8);
 			var _special = buffer_read(buffer,buffer_bool);
 			
-			//var _player = socket_to_instanceid[? socket];
-			//_player.x = _move_x;
-			//_player.y = _move_y;
+			var _player = socket_to_instanceid[? socket];
+			if (_move_x != 0) _player.image_xscale = _move_x;
+			if (_special) with (_player){
+				if (myhitbox = noone) {
+					myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
+					myhitbox.sprite_index = spr_hitbox_punch;
+					myhitbox.image_xscale = image_xscale;
+					myhitbox.myplayer = id;
+				}
+			}
 				
 			var i = 0; repeat (ds_list_size(socket_list)){
 				var _socket = socket_list[| i];
@@ -121,29 +129,42 @@ ball = {
 		self.y = room_height div 2;
 		self.spd = {x: 0, y: 0,};
 		self.frict = 0.005;
-		self.hitbuffer = 30;
+		self.colbuffer = 30;
+		self.punchbuffer = 30;
 	},
 	
 	update: function(){
+		var _collided = collision_circle(self.x,self.y,self.radius,obj_hitbox,true,false);
+		if (punchbuffer > 0) _collided = noone; 
+		if (_collided != noone){
+			var _frame = _collided.image_index;
+			var _power = hitbox_data[? _collided.sprite_index][_frame];
+			var _dir = point_direction(_collided.x,_collided.y,self.x,self.y);
+			self.spd.x = lengthdir_x(_power,_dir);
+			self.spd.y = lengthdir_y(_power,_dir);
+			punchbuffer = 20;
+		}
 		var _collided = collision_circle(self.x,self.y,self.radius,obj_player,false,false);
-		if (hitbuffer <= 0 and _collided != noone) {
-				self.spd.x = -self.spd.x;
-				self.spd.y = -self.spd.y;
-				self.spd.x += (_collided.velocity.x);
-				self.spd.y += (_collided.velocity.y);
-				hitbuffer = 30;
+		if (colbuffer > 0) _collided = noone; 
+		if (_collided != noone) {
+			//self.spd.x = -self.spd.x;
+			//self.spd.y = -self.spd.y;
+			self.spd.x += _collided.velocity.x;
+			self.spd.y += _collided.velocity.y;
+			colbuffer = 20;
 		}
 		self.spd.x = lerp(self.spd.x,0,self.frict);
 		self.spd.y = lerp(self.spd.y,0,self.frict);
 		self.x += self.spd.x;
 		self.y += self.spd.y;
-		if (self.x > room_width - 8  or self.x < 8) self.spd.x = -self.spd.x;
+		if (self.x > room_width  - 8 or self.x < 8) self.spd.x = -self.spd.x;
 		if (self.y > room_height - 8 or self.y < 8) self.spd.y = -self.spd.y;
-		if (self.hitbuffer > 0) self.hitbuffer--;
+		if (self.colbuffer > 0)		self.colbuffer--;
+		if (self.punchbuffer > 0)	self.punchbuffer--;
 		
 	},
 	draw: function(){
-		draw_circle(self.x,self.y,self.radius,(!self.hitbuffer <= 0));
+		draw_circle(self.x,self.y,self.radius,(!self.colbuffer <= 0));
 	}
 }
 

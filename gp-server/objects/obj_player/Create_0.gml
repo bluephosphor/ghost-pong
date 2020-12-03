@@ -1,6 +1,7 @@
 //id variables
 username = "";
 name_height_offset = 24;
+myhitbox = noone;
 
 enum input_packet{
 	move_x,
@@ -9,7 +10,5 @@ enum input_packet{
 	enum_length,
 }
 
-x_last = x;
-y_last = y;
 
 velocity = new vec2(0,0);
