@@ -47,6 +47,7 @@
       ],"multiselect":true,"filters":[],"resourceVersion":"1.0","name":"modifierKeys","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"undefined","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"openFunction","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"undefined","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"closeFunction","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":7,"value":"$FFFFFF00","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"chatColor","tags":[],"resourceType":"GMObjectProperty",},
   ],
   "overriddenProperties": [],
   "parent": {

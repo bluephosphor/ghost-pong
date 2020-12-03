@@ -36,13 +36,20 @@ surface_set_target(shellSurface);
 		var outputStr = ds_list_find_value(output, i - 1);
 		var lineHeight = string_height(outputStr);
 		yOffset -= lineHeight;
-		if (string_char_at(outputStr, 1) == ">") {
-			draw_set_color(fontColorSecondary);
-			draw_text(6, yOffset, prompt);
-			draw_text(10 + xOffset, yOffset, string_delete(outputStr, 1, 1));
-		} else {
-			draw_set_color(fontColor);
-			draw_text(10 + xOffset, yOffset, outputStr);
+		switch (string_char_at(outputStr, 1)){
+			case ">": //command
+				draw_set_color(fontColorSecondary);
+				draw_text(6, yOffset, prompt);
+				draw_text(10 + xOffset, yOffset, string_delete(outputStr, 1, 1));
+				break;
+			case "}": //chat
+				draw_set_color(chatColor);
+				draw_text(10 + xOffset, yOffset, string_delete(outputStr, 1, 1));
+				break;
+			default:
+				draw_set_color(fontColor);
+				draw_text(10 + xOffset, yOffset, outputStr);
+				break;
 		}
 	}
 	draw_set_alpha(1);

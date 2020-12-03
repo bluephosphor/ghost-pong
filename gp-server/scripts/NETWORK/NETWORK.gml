@@ -1,7 +1,7 @@
 function network_player_join(username){
 	
 	//create obj_player in server
-	var _player = instance_create_layer(player_spawn_x,player_spawn_y,layer,obj_player);
+	var _player = instance_create_layer(player_spawns[socket].x,player_spawns[socket].y,layer,obj_player);
 	_player.username = username; //give player username
 	_player.image_blend = colors[socket]; //set player color
 	
@@ -47,6 +47,8 @@ function network_player_join(username){
 		}
 		i++;
 	}
+	ds_list_add(shell.output,"player: " + username + " | client ID [" + string(socket) + "] connected.");
+	send_string(username + " joined the game.");
 }
 
 function vec2(x,y) constructor{

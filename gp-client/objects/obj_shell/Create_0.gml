@@ -46,7 +46,7 @@ for (var i = 0; i < array_length(globalVariables); i++) {
 	// Only looking for variables that start with sh_
 	if (string_pos("sh_", string_lower(globalVariables[i])) == 1) {
 		// Strip off the sh_ when we store them in our array
-		autocompleteFunctions[array_length(autocompleteFunctions)] = string_delete(globalVariables[i], 1, 3);
+		autocompleteFunctions[array_length(autocompleteFunctions)] = "/" + string_delete(globalVariables[i], 1, 3);
 	}
 }
 

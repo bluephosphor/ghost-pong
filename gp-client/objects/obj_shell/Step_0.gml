@@ -51,34 +51,46 @@ if (!isOpen) {
 		}
 		cursorPos = string_length(consoleString) + 1;
 	} else if (keyboard_check_pressed(vk_enter)) {
-		var args = self.string_split(consoleString, " ");
-		if (array_length(args) > 0) {
-			var script = asset_get_index("sh_" + args[0]);
-			if (script > -1) {
-				var response = script_execute(script, args);
-				ds_list_add(history, consoleString);
-				ds_list_add(output, ">" + consoleString);
-				if (response != 0) {
-					ds_list_add(output, string(response));
+		switch (string_char_at(consoleString,1)){
+			case "/": //command
+				consoleString = string_delete(consoleString,1,1);
+				var args = self.string_split(consoleString, " ");
+				if (array_length(args) > 0) {
+					var script = asset_get_index("sh_" + args[0]);
+					if (script > -1) {
+						var response = script_execute(script, args);
+						ds_list_add(history, consoleString);
+						ds_list_add(output, ">" + consoleString);
+						if (response != 0) {
+							ds_list_add(output, string(response));
+						}
+						historyPos = ds_list_size(history);
+						consoleString = "";
+						savedConsoleString = "";
+						cursorPos = 1;
+					} else {
+						ds_list_add(output, ">" + consoleString);
+						ds_list_add(output, "No such command: " + consoleString);
+						ds_list_add(history, consoleString);
+						consoleString = "";
+						savedConsoleString = "";
+						cursorPos = 1;
+					}
+				} else {
+					ds_list_add(output, ">");
+					consoleString = "";
+					savedConsoleString = "";
+					cursorPos = 1;
 				}
-				historyPos = ds_list_size(history);
-				consoleString = "";
-				savedConsoleString = "";
-				cursorPos = 1;
-			} else {
-				send_string(consoleString);
-				//ds_list_add(output, ">" + consoleString);
-				//ds_list_add(output, "No such command: " + consoleString);
-				//ds_list_add(history, consoleString);
-				consoleString = "";
-				savedConsoleString = "";
-				cursorPos = 1;
-			}
-		} else {
-			ds_list_add(output, ">");
-			consoleString = "";
-			savedConsoleString = "";
-			cursorPos = 1;
+				break;
+			default: //chat
+				if (consoleString != ""){
+					send_string(consoleString);
+					consoleString = "";
+					savedConsoleString = "";
+					cursorPos = 1;
+				}
+				break;
 		}
 	} else if (keyboard_check_pressed(vk_tab)) {
 		if (ds_list_size(filteredFunctions) != 0) {

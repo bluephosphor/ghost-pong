@@ -31,7 +31,7 @@ function received_packet(buffer,socket){
 			network_player_join(_username);
 			break;
 		case network.text: // chat
-			var _message = buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
+			var _message = "}" + buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			send_string(_message);
 			break;
@@ -105,10 +105,15 @@ function send_string(str){
 	}
 }
 
-players_online = "0";
-player_spawn_x	= 100;
-player_spawn_y	= 100;
-colors			= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
+players_online		= "0";
+player_spawns[0]	= new vec2(room_width div 2, room_height div 2); //this shouldn't get used
+player_spawns[1]	= new vec2(room_width * 0.25, room_height * 0.25); 
+player_spawns[2]	= new vec2(room_width * 0.75, room_height * 0.25); 
+player_spawns[3]	= new vec2(room_width * 0.25, room_height * 0.75); 
+player_spawns[4]	= new vec2(room_width * 0.75, room_height * 0.75); 
+player_spawns[5]	= new vec2(room_width * 0.25, room_height * 0.5); 
+player_spawns[6]	= new vec2(room_width * 0.75, room_height * 0.5); 
+colors				= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
 ball = {
 	init: function(){
 		self.radius = 16;
