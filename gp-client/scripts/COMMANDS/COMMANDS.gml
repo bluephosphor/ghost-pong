@@ -24,6 +24,6 @@ function sh_pixelscale(args){
 	var _w = room_width * _num;
 	var _h = room_height * _num;
 	window_set_size(_w,_h);
-	surface_resize(application_surface,_w,_h);
+	//surface_resize(application_surface,_w,_h);
 	window_center();
 }

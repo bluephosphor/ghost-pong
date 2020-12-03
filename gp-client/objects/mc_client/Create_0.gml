@@ -20,4 +20,4 @@ socket_to_instanceid = ds_map_create();
 
 shell			= instance_create_layer(0,0,layer,obj_shell);
 ball			= instance_create_layer(0,0,layer,obj_ball);
-colors			= [c_black,c_red,c_blue,c_yellow,c_green];
+colors			= [c_black,c_red,c_aqua,c_yellow,c_green,c_orange,c_fuchsia];

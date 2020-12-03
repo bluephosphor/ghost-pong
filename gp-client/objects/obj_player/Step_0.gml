@@ -19,7 +19,13 @@ if (keyboard_update()){
 		i++;
 	}
 }
+
+switch(state){
+	case playerstate_attack: face = 3; break;
+	default: face = 1;
+}
 script_execute(state);
+hands.update();
 
 if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
