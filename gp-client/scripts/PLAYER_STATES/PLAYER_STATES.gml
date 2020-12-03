@@ -19,7 +19,7 @@ function playerstate_normal(){
 		spd.y = lerp(spd.y,0,frict);
 	}
 	if (in_special) state = playerstate_attack;
-	if (hands.animation_ended) hands.animation_ended = false;
+	if (myhands.animation_ended) myhands.animation_ended = false;
 	move_and_collide();
 }
 
@@ -28,8 +28,35 @@ function playerstate_attack(){
 	spd.y = lerp(spd.y,0,frict);
 	move_and_collide();
 	
-	if (hands.animation_ended){
+	if (myhands.animation_ended){
 		state = playerstate_normal;
-		hands.animation_ended = false;
+		myhands.animation_ended = false;
+	}
+}
+
+function hands(spr) constructor {
+	idle_speed			= 15; //<
+	attack_speed		= 4;  //< steps-per-frame
+	idle_frame_end		= 1;
+	attack_frame_end	= sprite_get_number(spr);
+	curr_frame			= 0;
+	step_counter		= 0;
+	animation_ended		= false;
+	
+	update = function(){
+		var _id = mc_client.socket_to_instanceid[? mysocket];
+		var _attacking		= (_id.state == playerstate_attack);
+		var _step_limit		= _attacking ? self.attack_speed : self.idle_speed;
+		var _anim_limit		= _attacking ? self.attack_frame_end : self.idle_frame_end;
+		
+		self.step_counter++;
+		if (self.step_counter < _step_limit) return;
+		
+		self.curr_frame++;
+		self.step_counter = 0;
+		if (self.curr_frame > _anim_limit) {
+			self.curr_frame = 0;
+			self.animation_ended = true;
+		}
 	}
 }
