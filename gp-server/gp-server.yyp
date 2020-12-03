@@ -1,6 +1,6 @@
 {
   "resources": [
-    {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
+    {"id":{"name":"spr_player_bbox","path":"sprites/spr_player_bbox/spr_player_bbox.yy",},"order":0,},
     {"id":{"name":"mc_server","path":"objects/mc_server/mc_server.yy",},"order":0,},
     {"id":{"name":"obj_shell","path":"objects/obj_shell/obj_shell.yy",},"order":1,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":2,},

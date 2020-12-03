@@ -116,7 +116,7 @@ player_spawns[6]	= new vec2(room_width * 0.75, room_height * 0.5);
 colors				= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
 ball = {
 	init: function(){
-		self.radius = 16;
+		self.radius = 8;
 		self.x = room_width div 2;
 		self.y = room_height div 2;
 		self.spd = {x: 0, y: 0,};

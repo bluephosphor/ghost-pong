@@ -1,7 +1,7 @@
 //defining variables
 //image_alpha = 0.5;
 username = "";
-name_height_offset = 24;
+name_height_offset = 16;
 socket = -1;
 equipped = spr_ghost_hands;
 in_special = 0;
@@ -26,3 +26,4 @@ enum input_packet{
 }
 inputs_sent		= array_create(input_packet.enum_length,false);
 input_sender	= array_create(input_packet.enum_length,false);
+

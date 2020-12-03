@@ -1,1 +1,1 @@
-radius = 16;
+radius = 8;
