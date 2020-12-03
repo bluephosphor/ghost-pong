@@ -5,7 +5,10 @@ var _resolution_x = texture_get_texel_width(_tex);
 var _resolution_y = texture_get_texel_height(_tex);
 shader_set_uniform_f(_res, _resolution_x, _resolution_y);
 draw_self();
-draw_sprite_ext(equipped,myhands.curr_frame,x,y,image_xscale,image_yscale,image_angle,image_blend,1);
+draw_sprite_ext(
+	equipped,
+	myhands.curr_frame,
+	x,y,image_xscale,image_yscale,image_angle,image_blend,1);
 shader_reset();
 
 draw_sprite_ext(asset_get_index("spr_ghost_face_" + string(face)),-1,x,y,image_xscale,image_yscale,image_angle,c_white,1);

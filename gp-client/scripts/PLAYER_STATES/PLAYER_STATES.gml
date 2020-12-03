@@ -42,21 +42,20 @@ function hands(spr) constructor {
 	curr_frame			= 0;
 	step_counter		= 0;
 	animation_ended		= false;
-	
-	update = function(){
-		var _id = mc_client.socket_to_instanceid[? mysocket];
-		var _attacking		= (_id.state == playerstate_attack);
-		var _step_limit		= _attacking ? self.attack_speed : self.idle_speed;
-		var _anim_limit		= _attacking ? self.attack_frame_end : self.idle_frame_end;
+}
+
+function animate_hands(){
+	var _attacking		= (state == playerstate_attack);
+	var _step_limit		= _attacking ? myhands.attack_speed : myhands.idle_speed;
+	var _anim_limit		= _attacking ? myhands.attack_frame_end : myhands.idle_frame_end;
 		
-		self.step_counter++;
-		if (self.step_counter < _step_limit) return;
+	myhands.step_counter++;
+	if (myhands.step_counter < _step_limit) return;
 		
-		self.curr_frame++;
-		self.step_counter = 0;
-		if (self.curr_frame > _anim_limit) {
-			self.curr_frame = 0;
-			self.animation_ended = true;
-		}
+	myhands.curr_frame++;
+	myhands.step_counter = 0;
+	if (myhands.curr_frame > _anim_limit) {
+		myhands.curr_frame = 0;
+		myhands.animation_ended = true;
 	}
 }

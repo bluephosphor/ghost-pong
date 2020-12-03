@@ -25,7 +25,7 @@ switch(state){
 	default: face = 1;
 }
 script_execute(state);
-myhands.update();
+animate_hands();
 
 if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
