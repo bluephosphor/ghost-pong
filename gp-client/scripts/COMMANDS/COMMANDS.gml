@@ -27,3 +27,7 @@ function sh_pixelscale(args){
 	//surface_resize(application_surface,_w,_h);
 	window_center();
 }
+
+function sh_ballreset(args){
+	send_command(args[0]);
+}

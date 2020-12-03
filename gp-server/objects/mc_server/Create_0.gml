@@ -3,6 +3,7 @@ enum network{
 	player_connect,
 	player_disconnect,
 	player_input,
+	player_command,
 	ball_update,
 	text,
 	move,
@@ -34,6 +35,16 @@ function received_packet(buffer,socket){
 			var _message = "}" + buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			send_string(_message);
+			break;
+		case network.player_command:
+			var _name	 = buffer_read(buffer,buffer_string);
+			var _command = buffer_read(buffer,buffer_string);
+			ds_list_add(shell.output,_name + "excecuted server command /" + _command);
+			switch(_command){
+				case "ballreset":
+					ball.init();
+					break;
+			}
 			break;
 		case network.move:
 			var _move_x = buffer_read(buffer,buffer_u16);

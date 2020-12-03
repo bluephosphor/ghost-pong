@@ -1,6 +1,6 @@
 //id variables
 username = "";
-name_height_offset = 24;
+name_height_offset = 16;
 myhitbox = noone;
 
 enum input_packet{

@@ -85,6 +85,14 @@ function send_string(str){
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }
 
+function send_command(str){
+	buffer_seek(client_buffer,buffer_seek_start,0);
+	buffer_write(client_buffer,buffer_u8,network.player_command);
+	buffer_write(client_buffer,buffer_string,con_game.client_username);
+	buffer_write(client_buffer,buffer_string,str);
+	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
+}
+
 function send_pos(_x,_y){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.move);
