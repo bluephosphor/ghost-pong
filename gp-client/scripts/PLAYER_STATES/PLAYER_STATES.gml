@@ -1,5 +1,5 @@
 function playerstate_normal(){
-	image_alpha = lerp(image_alpha,1,0.01);
+	image_alpha = lerp(image_alpha,1,0.2);
 	teleport_counter = approach(teleport_counter,0,1);
 	
 	spd.x += accel.normal * move.x;
@@ -21,13 +21,18 @@ function playerstate_normal(){
 	if (move.y == 0){
 		spd.y = lerp(spd.y,0,frict);
 	}
-	if (in_special) state = playerstate_attack;
+	if (in_special and teleport_counter == 0) {
+		spd.x *= 3;
+		spd.y *= 3;
+		state = playerstate_teleport;
+	}
+	if (in_attack)  state = playerstate_attack;
 	if (myhands.animation_ended) myhands.animation_ended = false;
 	move_and_collide();
 }
 
 function playerstate_teleport(){
-	image_alpha = lerp(image_alpha,0,0.01);
+	image_alpha = lerp(image_alpha,0,0.3);
 	teleport_counter = approach(teleport_counter,teleport_length,1);
 	
 	spd.x += accel.teleport * move.x;
@@ -41,8 +46,9 @@ function playerstate_teleport(){
 		spd.y = lengthdir_y(max_speed.teleport,_dir);
 	}
 
-	if (in_special) state = playerstate_attack;
 	if (myhands.animation_ended) myhands.animation_ended = false;
+	if (teleport_counter == teleport_length) or (!in_special) state = playerstate_normal;
+	
 	move_and_collide();
 }
 

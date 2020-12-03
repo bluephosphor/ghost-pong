@@ -12,11 +12,11 @@ myhands = new hands(equipped);
 //movement variables
 move = new vec2(0,0);
 spd = new vec2(0,0);
-accel =		{normal: 0.5,teleport: 0.1}
-max_speed = {normal: 4,	 teleport: 10};
+accel =		{normal: 0.5,teleport: 0.2}
+max_speed = {normal: 4,	 teleport: 12};
 frict = 0.2;
 
-teleport_length = 30;
+teleport_length = 15;
 teleport_counter = 0;
 
 state = playerstate_normal;
@@ -24,4 +24,3 @@ face = 1;
 
 inputs_sent		= array_create(input_packet.enum_length,false);
 input_sender	= array_create(input_packet.enum_length,false);
-

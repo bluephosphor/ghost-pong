@@ -10,7 +10,7 @@ shader_reset();
 draw_sprite_ext(asset_get_index("spr_ghost_face_" + string(face)),-1,x,y,image_xscale,image_yscale,image_angle,c_white,1);
 
 shader_set(sh_outline);
-draw_sprite_ext(equipped,myhands.curr_frame,x,y,image_xscale,image_yscale,image_angle,image_blend,1);
+draw_sprite_ext(equipped,myhands.curr_frame,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 shader_reset();
 
 draw_set_halign(fa_center);

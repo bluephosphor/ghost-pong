@@ -57,15 +57,17 @@ function received_packet(buffer){
 			
 			break;
 		case network.player_input:
-			var _sock = buffer_read(buffer,buffer_u8);
-			var _move_x = buffer_read(buffer,buffer_s8);
-			var _move_y = buffer_read(buffer,buffer_s8);
+			var _sock	 = buffer_read(buffer,buffer_u8);
+			var _move_x  = buffer_read(buffer,buffer_s8);
+			var _move_y  = buffer_read(buffer,buffer_s8);
 			var _special = buffer_read(buffer,buffer_bool);
+			var _attack  = buffer_read(buffer,buffer_bool);
 
 			_player				= socket_to_instanceid[? _sock];
 			_player.move.x		= _move_x;
 			_player.move.y		= _move_y;
 			_player.in_special	= _special;
+			_player.in_attack	= _attack;
 			break;
 		case network.ball_update:
 			var _ball_x = buffer_read(buffer,buffer_f32);

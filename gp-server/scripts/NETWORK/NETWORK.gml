@@ -58,13 +58,14 @@ function received_packet(buffer,socket){
 			}
 			break;
 		case network.player_input:
-			var _move_x = buffer_read(buffer,buffer_s8);
-			var _move_y = buffer_read(buffer,buffer_s8);
+			var _move_x  = buffer_read(buffer,buffer_s8);
+			var _move_y  = buffer_read(buffer,buffer_s8);
 			var _special = buffer_read(buffer,buffer_bool);
+			var _attack  = buffer_read(buffer,buffer_bool);
 			
 			var _player = socket_to_instanceid[? socket];
 			if (_move_x != 0) _player.image_xscale = _move_x;
-			if (_special) with (_player){
+			if (_attack) with (_player){
 				if (myhitbox = noone) {
 					myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
 					myhitbox.sprite_index = spr_hitbox_punch;
@@ -81,6 +82,7 @@ function received_packet(buffer,socket){
 				buffer_write(server_buffer,buffer_s8,_move_x);
 				buffer_write(server_buffer,buffer_s8,_move_y);
 				buffer_write(server_buffer,buffer_bool,_special);
+				buffer_write(server_buffer,buffer_bool,_attack);
 				network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
 				i++;
 			}
