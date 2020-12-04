@@ -6,4 +6,4 @@ switch(state){
 	case playerstate_teleport: _str += "teleport";break;
 }
 
-draw_text((room_width / 4) * (mysocket - 1),room_height-string_height(_str),_str);
+draw_text((room_width / 4) * (socket - 1),room_height-string_height(_str),_str);
