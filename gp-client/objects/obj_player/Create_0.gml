@@ -25,3 +25,14 @@ face = 1;
 
 inputs_sent		= array_create(input_packet.enum_length,false);
 input_sender	= array_create(input_packet.enum_length,false);
+
+trail_sprite = function(parent_id) constructor{
+	self.x = parent_id.x;
+	self.y = parent_id.y;
+	self.sprite_index = parent_id.sprite_index;
+	self.image_index = parent_id.image_index;
+	self.image_blend = parent_id.image_blend;
+	self.image_alpha = 0.4;
+	self.update = function(){image_alpha -= 0.05;}
+}
+trail = [];
