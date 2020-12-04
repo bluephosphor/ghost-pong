@@ -79,6 +79,7 @@ function received_packet(buffer,socket){
 						myhitbox.sprite_index = spr_hitbox_punch;
 						myhitbox.image_xscale = image_xscale;
 						myhitbox.myplayer = id;
+						if (playerstate == state.teleport) tp_cooldown = 20;
 					}
 				}
 				if(_special) {

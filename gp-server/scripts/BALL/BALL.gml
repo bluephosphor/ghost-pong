@@ -30,7 +30,7 @@ ball = {
 		var _collided = collision_circle(self.x,self.y,self.radius,obj_player,false,false);
 		if (colbuffer > 0) _collided = noone; 
 		if (_collided != noone and _collided.playerstate != state.teleport and !_collided.tp_cooldown) {
-			self.last_hit = _collided.mysocket;
+			//self.last_hit = _collided.mysocket;
 			//self.spd.x = -self.spd.x;
 			//self.spd.y = -self.spd.y;
 			self.spd.x += _collided.velocity.x;

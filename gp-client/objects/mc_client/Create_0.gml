@@ -14,7 +14,7 @@ globalvar port, client, connected, client_buffer, shell, colors, ball;
 port			= 682;
 mysocket = "";
 client			= network_create_socket(network_socket_tcp);
-connected		= network_connect(client,"192.168.1.187",port); //local IPv4: "192.168.1.187"
+connected		= network_connect(client,"75.188.243.178",port); //local IPv4: "192.168.1.187"
 client_buffer	= buffer_create(1024,buffer_fixed,1);
 
 socket_to_instanceid = ds_map_create();

@@ -46,5 +46,11 @@ function sh_pixelscale(args){
 	view_width = _w;
 	view_height = _w;
 	window_center();
+	
+	if (instance_exists(obj_shell)){
+		shell.width = _w;
+		shell.height = _h;
+		surface_resize(shell.shellSurface,_w,_h);
+	}
 	return "resized window to x: " + string(_w) + " y: " + string(_h);
 }
