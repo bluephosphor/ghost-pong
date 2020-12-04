@@ -52,6 +52,9 @@ function trail_sprite(parent_id, decrement) constructor{
 	self.y				= parent_id.y;
 	self.sprite_index	= parent_id.sprite_index;
 	self.image_index	= parent_id.image_index;
+	self.image_xscale	= parent_id.image_xscale;
+	self.image_yscale	= parent_id.image_yscale
+	self.image_angle	= parent_id.image_angle;
 	self.image_blend	= parent_id.image_blend;
 	self.image_alpha	= 0.4;
 	self.decrement		= decrement;
@@ -72,7 +75,9 @@ function trail_sprite_draw(){
 				_sprite.image_index,
 				_sprite.x,
 				_sprite.y,
-				1,1,0,
+				_sprite.image_xscale,
+				_sprite.image_yscale,
+				_sprite.image_angle,
 				_c,
 				_sprite.image_alpha
 			);
