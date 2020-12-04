@@ -25,7 +25,7 @@ function sh_pixelscale(args){
 	var _h = room_height * _num;
 	window_set_size(_w,_h);
 	window_center();
-	return "resized window to x: " + string(_w) + " y: "  string(_h);
+	return "resized window to x: " + string(_w) + " y: " + string(_h);
 }
 
 function sh_ballreset(args){

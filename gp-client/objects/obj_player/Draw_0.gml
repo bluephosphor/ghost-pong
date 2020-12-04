@@ -7,13 +7,44 @@ shader_set_uniform_f(_res, _resolution_x, _resolution_y);
 
 trail_sprite_draw();
 
-draw_self();
+var _a = (blink)? 0.3 : image_alpha;
 
+//body
+draw_sprite_ext(
+	sprite_index,
+	image_index,
+	x,y,
+	image_xscale,
+	image_yscale,
+	image_angle,
+	image_blend,
+	_a
+);
+
+//face
 shader_reset();
-draw_sprite_ext(asset_get_index("spr_ghost_face_" + string(face)),-1,x,y,image_xscale,image_yscale,image_angle,c_white,1);
+draw_sprite_ext(
+	asset_get_index("spr_ghost_face_" + string(face)),
+	-1,x,y,
+	image_xscale,
+	image_yscale,
+	image_angle,
+	c_white,
+	1
+);
 
+//hands
 shader_set(sh_outline);
-draw_sprite_ext(equipped,myhands.curr_frame,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+draw_sprite_ext(
+	equipped,
+	myhands.curr_frame,
+	x,y,
+	image_xscale,
+	image_yscale,
+	image_angle,
+	image_blend,
+	_a
+);
 shader_reset();
 
 draw_set_halign(fa_center);

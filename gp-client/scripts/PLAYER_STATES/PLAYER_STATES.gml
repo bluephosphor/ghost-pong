@@ -1,4 +1,6 @@
 function playerstate_normal(){
+	
+	face = 1;
 	image_alpha		 = approach(image_alpha,1,phase_speed);
 	teleport_counter = approach(teleport_counter,0,teleport_regen_speed);
 	
@@ -35,6 +37,7 @@ function playerstate_teleport(){
 	
 	array_push(trail,new trail_sprite(id,0.03));
 	
+	face = 2;
 	image_alpha		 = approach(image_alpha,0,phase_speed);
 	teleport_counter = approach(teleport_counter,teleport_length,1);
 	
@@ -57,6 +60,7 @@ function playerstate_teleport(){
 }
 
 function playerstate_attack(){
+	face = 3
 	image_alpha		 = approach(image_alpha,1,phase_speed);
 	teleport_counter = approach(teleport_counter,0,1);
 	spd.x = lerp(spd.x,0,frict);
@@ -66,6 +70,29 @@ function playerstate_attack(){
 	if (myhands.animation_ended){
 		state = playerstate_normal;
 		myhands.animation_ended = false;
+	}
+}
+
+function playerstate_hitstun(){
+	face			 = 4;
+	image_alpha		 = approach(image_alpha,1,phase_speed);
+	teleport_counter = approach(teleport_counter,0,1);
+	spd.x = lerp(spd.x,0,frict/2);
+	spd.y = lerp(spd.y,0,frict/2);
+	input_sender[input_packet.move_x] = 0;
+	input_sender[input_packet.move_y] = 0;
+	move_and_collide();
+	
+	
+	if (myhands.animation_ended){
+		myhands.animation_ended = false;
+	}
+	
+	hitstun--;
+	blink = ((hitstun div 4) mod 2 == 0);
+	if (!hitstun) {
+		blink = false;
+		state = playerstate_normal;
 	}
 }
 

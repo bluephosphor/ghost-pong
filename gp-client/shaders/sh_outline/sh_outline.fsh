@@ -4,7 +4,7 @@ uniform vec2 resolution;
 
 void main()
 {
-    float _a = texture2D( gm_BaseTexture, v_vTexcoord + resolution).a
+    float _a  = texture2D( gm_BaseTexture, v_vTexcoord + resolution).a
               + texture2D( gm_BaseTexture, v_vTexcoord - resolution).a
               + texture2D( gm_BaseTexture, v_vTexcoord + vec2(resolution.x,-resolution.y)).a
               + texture2D( gm_BaseTexture, v_vTexcoord + vec2(-resolution.x,resolution.y)).a;

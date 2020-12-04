@@ -1,7 +1,5 @@
-switch(state){
-	case playerstate_attack: face = 3; break;
-	default: face = 1;
-}
+if (hitstun and state != playerstate_hitstun) state = playerstate_hitstun;
+
 script_execute(state);
 animate_hands();
 trail_sprite_update();

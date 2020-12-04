@@ -12,6 +12,8 @@
         "then tell your client player(s) your public ip",
     ],
     
-    "host_ip": "75.188.243.178"
+    "host_ip": "75.188.243.178",
+
+    "port": 682
 
 }

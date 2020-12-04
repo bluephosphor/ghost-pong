@@ -8,13 +8,10 @@ if (gamestate == ACTIONABLE){
 	var _c			= (teleport_counter == 0) ? image_blend : c_gray;
 
 	//draw outer rectangle
-	draw_rectangle_color(
+	draw_sprite(
+		spr_hb_container,0,
 		_draw_x + _offset - _margin,
-		room_height - 12 - _margin, 
-		_draw_x + _offset + _bar_width + _margin,
-		room_height - _offset + _margin,
-		_c,_c,_c,_c,
-		true
+		room_height - 12 - _margin
 	);
 	//draw inner rectangle
 	draw_rectangle_color(
@@ -32,9 +29,10 @@ if (!debug) exit;
 var _str = "| tpcounter: "+ string(teleport_counter) + "\n| state: ";
 
 switch(state){
-	case playerstate_normal: _str += "normal"; break;
-	case playerstate_attack: _str += "attack"; break;
-	case playerstate_teleport: _str += "teleport";break;
+	case playerstate_normal:	_str += "normal"; break;
+	case playerstate_hitstun:	_str += "hitstun"; break;
+	case playerstate_attack:	_str += "attack"; break;
+	case playerstate_teleport:	_str += "teleport";break;
 }
 
 draw_text(_draw_x,room_height-string_height(_str),_str);

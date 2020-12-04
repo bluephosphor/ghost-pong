@@ -23,6 +23,8 @@ phase_speed = 0.3;
 
 state = playerstate_normal;
 face = 1;
+hitstun = 0;
+blink = false;
 
 inputs_sent		= array_create(input_packet.enum_length,false);
 input_sender	= array_create(input_packet.enum_length,false);
