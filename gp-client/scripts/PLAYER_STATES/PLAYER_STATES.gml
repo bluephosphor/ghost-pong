@@ -50,6 +50,7 @@ function playerstate_teleport(){
 	}
 
 	if (myhands.animation_ended) myhands.animation_ended = false;
+	if (in_attack)  state = playerstate_attack;
 	if (teleport_counter == teleport_length) or (!in_special) state = playerstate_normal;
 	
 	move_and_collide();
