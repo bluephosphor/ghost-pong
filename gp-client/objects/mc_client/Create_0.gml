@@ -11,11 +11,16 @@ enum network{
 
 globalvar port, client, connected, client_buffer, shell, colors, ball;
 
+var _str  = load_string_from_file("EDIT-ME.txt")
+var _json = json_parse(_str);
+
 port			= 682;
 mysocket = "";
 client			= network_create_socket(network_socket_tcp);
-connected		= network_connect(client,"75.188.243.178",port); //local IPv4: "192.168.1.187"
+connected		= network_connect(client,_json.host_ip,port); //local IPv4: "192.168.1.187"
 client_buffer	= buffer_create(1024,buffer_fixed,1);
+
+delete _json;
 
 socket_to_instanceid = ds_map_create();
 
