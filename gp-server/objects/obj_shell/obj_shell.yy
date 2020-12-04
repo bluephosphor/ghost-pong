@@ -24,8 +24,8 @@
     {"isDnD":false,"eventNum":64,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_shell","path":"objects/obj_shell/obj_shell.yy",},"resourceVersion":"1.0","name":null,"tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [
-    {"varType":4,"value":"room_width - 8","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"width","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":4,"value":"room_height - 8","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"height","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":4,"value":"800","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"width","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":4,"value":"600","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"height","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":6,"value":"\"bottom\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
         "\"top\"",
         "\"bottom\"",
@@ -34,7 +34,7 @@
     {"varType":2,"value":"$","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"prompt","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"make_color_rgb(237, 0, 54)","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"promptColor","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"c_black","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"consoleColor","tags":[],"resourceType":"GMObjectProperty",},
-    {"varType":0,"value":"0.9","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"consoleAlpha","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":0,"value":"0.7","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"consoleAlpha","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":5,"value":"font_console","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"consoleFont","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"make_color_rgb(255, 242, 245)","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"fontColor","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":4,"value":"make_color_rgb(140, 118, 123)","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"fontColorSecondary","tags":[],"resourceType":"GMObjectProperty",},

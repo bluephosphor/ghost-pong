@@ -14,7 +14,7 @@ function received_packet(buffer,socket){
 		case network.server_command:
 			var _name	 = buffer_read(buffer,buffer_string);
 			var _command = buffer_read(buffer,buffer_string);
-			ds_list_add(shell.output,_name + "excecuted server command /" + _command);
+			ds_list_add(shell.output,"player: " + _name + " | client ID [" + string(socket) + "] excecuted server command /" + _command);
 			switch(_command){
 				case "ballreset":
 					ball.init();
@@ -34,7 +34,7 @@ function received_packet(buffer,socket){
 				y = _move_y;
 			}
 			
-			var _ball_speeding = (ball.force > 4);
+			var _ball_speeding = ball.speeding;
 			var _ball_last_hit = ball.last_hit;
 				
 			var i = 0; repeat (ds_list_size(socket_list)){
@@ -81,7 +81,20 @@ function received_packet(buffer,socket){
 						myhitbox.myplayer = id;
 					}
 				}
-				playerstate = _special ? state.teleport : state.normal;
+				if(_special) {
+					if (playerstate == state.normal){
+						tp_start.x = x;
+						tp_start.y = y;
+					}
+					playerstate = state.teleport;
+				} else {
+					if (playerstate == state.teleport){
+						tp_end.x = x;
+						tp_end.y = y;
+						if (tp_end.x != tp_start.x or tp_end.y != tp_start.y) tp_cooldown = 20;
+					}
+					playerstate = state.normal;
+				}
 			}
 				
 			var i = 0; repeat (ds_list_size(socket_list)){

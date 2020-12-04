@@ -97,15 +97,15 @@ function trail_sprite_update(){
 			}
 			i++;
 		}
-		trail = array_shrink(trail);
+		trail = array_shrink(trail,-1);
 	}
 }
 
-function array_shrink(arr){
+function array_shrink(arr,remove_cells_with_value){
 	var _len = array_length(arr);
 	var _new_array = [];
 	var i = 0, j = 0; repeat(_len){
-		if (arr[i] != -1) _new_array[j++] = arr[i];
+		if (arr[i] != remove_cells_with_value) _new_array[j++] = arr[i];
 		i++;
 	}
 	

@@ -18,3 +18,6 @@ myhitbox = noone;
 playerstate = state.normal;
 
 velocity = new vec2(0,0);
+tp_start = new vec2(x,y);
+tp_end = new vec2(x,y);
+tp_cooldown = 0;

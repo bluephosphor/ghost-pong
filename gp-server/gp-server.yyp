@@ -7,6 +7,7 @@
     {"id":{"name":"COMMANDS","path":"scripts/COMMANDS/COMMANDS.yy",},"order":3,},
     {"id":{"name":"HITBOX_DATA","path":"scripts/HITBOX_DATA/HITBOX_DATA.yy",},"order":1,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":2,},
+    {"id":{"name":"GAME_FUNCTIONS","path":"scripts/GAME_FUNCTIONS/GAME_FUNCTIONS.yy",},"order":4,},
     {"id":{"name":"spr_hitbox_punch","path":"sprites/spr_hitbox_punch/spr_hitbox_punch.yy",},"order":1,},
     {"id":{"name":"obj_hitbox","path":"objects/obj_hitbox/obj_hitbox.yy",},"order":3,},
     {"id":{"name":"NETWORK","path":"scripts/NETWORK/NETWORK.yy",},"order":0,},

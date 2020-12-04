@@ -14,7 +14,9 @@ max_clients = 6;
 
 network_create_server(network_socket_tcp,port,max_clients);
 
-globalvar server, shell, server_buffer, socket_list, ball, hitbox_data;
+globalvar server, shell, server_buffer, socket_list, ball, hitbox_data, view_width, view_height, colors;
+
+sh_pixelscale([-1,"3"]);
 server = id;
 shell  = instance_create_layer(0,0,layer,obj_shell);
 shell.open();
@@ -34,3 +36,4 @@ player_spawns[6]	= new vec2(room_width * 0.75, room_height * 0.5);
 colors				= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
 
 ball.init();
+alarm[0] = 1;

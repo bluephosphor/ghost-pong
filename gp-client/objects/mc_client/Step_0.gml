@@ -1,4 +1,4 @@
-if (gamestate == ACTIONABLE and keyboard_check_pressed(191)){
+if (gamestate == ACTIONABLE and keyboard_check_pressed(191)){ // 191 = "/"
 	shell.open();
 	shell.consoleString += "/";
 	shell.cursorPos++;

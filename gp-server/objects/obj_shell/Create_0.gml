@@ -1,5 +1,8 @@
 isOpen = false;
 
+width = view_width;
+height = view_height;
+
 shellSurface = surface_create(width, height);
 
 cursorPos = 1;

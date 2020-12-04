@@ -28,8 +28,8 @@ function sh_set_fps(args){
 		network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
 		i++;
 	}
-	
 	game_set_speed(_value,gamespeed_fps);
+	return "set FPS to " + args[1];
 }
 
 function sh_instcount(args){
@@ -42,6 +42,9 @@ function sh_pixelscale(args){
 	var _w = room_width  * _num;
 	var _h = room_height * _num;
 	window_set_size(_w,_h);
+	surface_resize(application_surface,_w,_h);
+	view_width = _w;
+	view_height = _w;
 	window_center();
-	return "resized window to x: " + string(_w) + " y: "  string(_h);
+	return "resized window to x: " + string(_w) + " y: " + string(_h);
 }
