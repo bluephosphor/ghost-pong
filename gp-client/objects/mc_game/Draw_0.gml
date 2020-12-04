@@ -8,5 +8,3 @@ draw_text(room_width div 2,room_height div 2 - 16,"Please enter a username.\n(En
 draw_text_ext_transformed(room_width/2,room_height div 2 + 8,client_username,20,room_width,2,2,0);
 
 draw_set_halign(fa_left);
-
-draw_text(0,0,"keyboard_last: " + string(ord(keyboard_lastkey)));

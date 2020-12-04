@@ -16,8 +16,9 @@ accel =		{normal: 0.5,teleport: 1}
 max_speed = {normal: 4,	 teleport: 12};
 frict = 0.2;
 
-teleport_length = 15;
+teleport_length = 10;
 teleport_counter = 0;
+teleport_regen_speed = 0.3;
 phase_speed = 0.3;
 
 state = playerstate_normal;

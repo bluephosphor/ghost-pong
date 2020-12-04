@@ -1,6 +1,6 @@
 function playerstate_normal(){
 	image_alpha		 = approach(image_alpha,1,phase_speed);
-	teleport_counter = approach(teleport_counter,0,1);
+	teleport_counter = approach(teleport_counter,0,teleport_regen_speed);
 	
 	spd.x += accel.normal * move.x;
 	spd.y += accel.normal * move.y;
