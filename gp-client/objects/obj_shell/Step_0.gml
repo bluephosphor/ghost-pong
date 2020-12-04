@@ -4,7 +4,7 @@ if (!surface_exists(shellSurface)) {
 	shellSurface = surface_create(width, height);
 }
 
-if (!isOpen) {
+if (gamestate == ACTIONABLE) {
 	if (self.keyComboPressed()) {
 		self.open();
 	}
@@ -12,7 +12,7 @@ if (!isOpen) {
 	var prevConsoleString = consoleString;
 	
 	if (keyboard_check_pressed(vk_escape)) {
-		self.close()
+		self.close();
 	} else if (self.keyboardCheckDelay(vk_backspace)) {
 		consoleString = string_delete(consoleString, cursorPos - 1, 1);
 		cursorPos = max(1, cursorPos - 1);

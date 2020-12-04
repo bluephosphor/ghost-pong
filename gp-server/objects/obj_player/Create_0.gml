@@ -12,6 +12,7 @@ enum state {
 
 //id variables
 username = "";
+mysocket = 0;
 name_height_offset = 16;
 myhitbox = noone;
 playerstate = state.normal;

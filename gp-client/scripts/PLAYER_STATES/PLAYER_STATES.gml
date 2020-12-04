@@ -33,7 +33,7 @@ function playerstate_normal(){
 
 function playerstate_teleport(){
 	
-	array_push(trail,new trail_sprite(id));
+	array_push(trail,new trail_sprite(id,0.03));
 	
 	image_alpha		 = approach(image_alpha,0,phase_speed);
 	teleport_counter = approach(teleport_counter,teleport_length,1);
@@ -50,13 +50,7 @@ function playerstate_teleport(){
 	}
 
 	if (myhands.animation_ended) myhands.animation_ended = false;
-	if (teleport_counter == teleport_length) or (!in_special){
-		while (array_length(trail) > 0) {
-			var _sprite = array_pop(trail);
-			delete _sprite;
-		}
-		state = playerstate_normal;
-	}
+	if (teleport_counter == teleport_length) or (!in_special) state = playerstate_normal;
 	
 	move_and_collide();
 }

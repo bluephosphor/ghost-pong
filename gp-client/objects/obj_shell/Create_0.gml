@@ -1,5 +1,3 @@
-isOpen = false;
-
 shellSurface = surface_create(width, height);
 
 cursorPos = 1;
@@ -22,7 +20,7 @@ if (instance_number(obj_shell) > 1) {
 /// @function open
 /// Opens the shell
 function open() {
-	isOpen = true;
+	gamestate = SHELL;
 	keyboard_string = "";
 	if (!is_undefined(openFunction)) {
 		openFunction();
@@ -32,7 +30,7 @@ function open() {
 /// @function close
 /// Closes the shell
 function close() {
-	isOpen = false;
+	gamestate = ACTIONABLE;
 	if (!is_undefined(closeFunction)) {
 		closeFunction();
 	}

@@ -7,12 +7,15 @@ ball = {
 		self.frict = 0.005;
 		self.colbuffer = 30;
 		self.punchbuffer = 30;
+		self.force = 0;
+		self.last_hit = 0;
 	},
 	
 	update: function(){
 		var _collided = collision_circle(self.x,self.y,self.radius,obj_hitbox,true,false);
 		if (punchbuffer > 0) _collided = noone; 
 		if (_collided != noone){
+			self.last_hit = _collided.myplayer.mysocket
 			var _frame = _collided.image_index;
 			var _power = hitbox_data[? _collided.sprite_index][_frame];
 			var _dir = point_direction(_collided.x,_collided.y,self.x,self.y);
@@ -23,12 +26,15 @@ ball = {
 		var _collided = collision_circle(self.x,self.y,self.radius,obj_player,false,false);
 		if (colbuffer > 0) _collided = noone; 
 		if (_collided != noone and _collided.playerstate != state.teleport) {
+			self.last_hit = _collided.mysocket;
 			//self.spd.x = -self.spd.x;
 			//self.spd.y = -self.spd.y;
 			self.spd.x += _collided.velocity.x;
 			self.spd.y += _collided.velocity.y;
 			colbuffer = 20;
 		}
+		
+		self.force = max(abs(self.spd.x),abs(self.spd.y));
 		self.spd.x = lerp(self.spd.x,0,self.frict);
 		self.spd.y = lerp(self.spd.y,0,self.frict);
 		self.x += self.spd.x;

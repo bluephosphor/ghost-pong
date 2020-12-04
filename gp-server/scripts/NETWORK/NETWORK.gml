@@ -11,7 +11,7 @@ function received_packet(buffer,socket){
 			ds_list_add(shell.output,_message);
 			send_string("}" + _message);
 			break;
-		case network.player_command:
+		case network.server_command:
 			var _name	 = buffer_read(buffer,buffer_string);
 			var _command = buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_name + "excecuted server command /" + _command);
@@ -33,6 +33,9 @@ function received_packet(buffer,socket){
 				x = _move_x;
 				y = _move_y;
 			}
+			
+			var _ball_speeding = (ball.force > 4);
+			var _ball_last_hit = ball.last_hit;
 				
 			var i = 0; repeat (ds_list_size(socket_list)){
 				var _sock = socket_list[| i];
@@ -44,6 +47,8 @@ function received_packet(buffer,socket){
 					buffer_write(server_buffer,buffer_u16,_move_y);
 					buffer_write(server_buffer,buffer_f32,ball.x);
 					buffer_write(server_buffer,buffer_f32,ball.y);
+					buffer_write(server_buffer,buffer_bool,_ball_speeding);
+					buffer_write(server_buffer,buffer_u8,_ball_last_hit);
 		
 					network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
 				} else {
@@ -51,6 +56,8 @@ function received_packet(buffer,socket){
 					buffer_write(server_buffer,buffer_u8,network.ball_update);
 					buffer_write(server_buffer,buffer_f32,ball.x);
 					buffer_write(server_buffer,buffer_f32,ball.y);
+					buffer_write(server_buffer,buffer_bool,_ball_speeding);
+					buffer_write(server_buffer,buffer_u8,_ball_last_hit);
 		
 					network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
 				}
@@ -104,12 +111,24 @@ function send_string(str){
 	}
 }
 
+function send_command(str){
+	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_write(server_buffer,buffer_u8,network.server_command);
+	buffer_write(server_buffer,buffer_string,str);
+	var i = 0; repeat (ds_list_size(socket_list)){
+		var _socket = socket_list[| i];
+		network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+		i++;
+	}
+}
+
 function network_player_join(username){
 	
 	//create obj_player in server
 	var _player = instance_create_layer(player_spawns[socket].x,player_spawns[socket].y,layer,obj_player);
 	_player.username = username; //give player username
 	_player.image_blend = colors[socket]; //set player color
+	_player.mysocket = socket;
 	
 	//add instance id of player to socket map
 	ds_map_add(socket_to_instanceid,socket,_player);

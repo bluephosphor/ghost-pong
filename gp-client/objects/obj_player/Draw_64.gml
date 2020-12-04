@@ -1,3 +1,5 @@
+if (!debug) exit;
+
 var _str = "| tpcounter: "+ string(teleport_counter) + "\n| state: ";
 
 switch(state){

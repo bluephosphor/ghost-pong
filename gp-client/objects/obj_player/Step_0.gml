@@ -4,10 +4,11 @@ switch(state){
 }
 script_execute(state);
 animate_hands();
+trail_sprite_update();
 
 if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
-if (keyboard_update()){
+if (gamestate == ACTIONABLE and keyboard_update()){
 	input_sender[input_packet.move_x]  = keyboard_check(input[key.right]) - keyboard_check(input[key.left]);
 	input_sender[input_packet.move_y]  = keyboard_check(input[key.down]) - keyboard_check(input[key.up]);
 	input_sender[input_packet.special] = keyboard_check(input[key.special]);

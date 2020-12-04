@@ -37,6 +37,16 @@ function received_packet(buffer){
 			var _message = buffer_read(buffer,buffer_string);
 			ds_list_add(shell.output,_message);
 			break;
+		case network.server_command:
+			var _command = buffer_read(buffer,buffer_string);
+			ds_list_add(shell.output,"[SERVER] excecuted command /" + _command);
+			switch(_command){
+				case "set_fps":
+					var _value = buffer_read(buffer,buffer_u8);
+					game_set_speed(_value,gamespeed_fps);
+					break;
+			}
+			break;
 		case network.move:
 			var _sock   = buffer_read(buffer,buffer_u8);
 			
@@ -45,9 +55,13 @@ function received_packet(buffer){
 			
 			var _ball_x = buffer_read(buffer,buffer_f32);
 			var _ball_y = buffer_read(buffer,buffer_f32);
+			var _ball_speeding = buffer_read(buffer,buffer_bool);
+			var _ball_last_hit = buffer_read(buffer,buffer_u8);
 			
 			ball.x = _ball_x;
 			ball.y = _ball_y;
+			ball.speeding = _ball_speeding;
+			ball.last_hit = _ball_last_hit;
 
 			if (!ds_map_empty(socket_to_instanceid)){
 				_player = socket_to_instanceid[? _sock];
@@ -72,9 +86,13 @@ function received_packet(buffer){
 		case network.ball_update:
 			var _ball_x = buffer_read(buffer,buffer_f32);
 			var _ball_y = buffer_read(buffer,buffer_f32);
+			var _ball_speeding = buffer_read(buffer,buffer_bool);
+			var _ball_last_hit = buffer_read(buffer,buffer_u8);
 			
 			ball.x = _ball_x;
 			ball.y = _ball_y;
+			ball.speeding = _ball_speeding;
+			ball.last_hit = _ball_last_hit;
 			break;
 	}
 }
@@ -89,7 +107,7 @@ function send_string(str){
 
 function send_command(str){
 	buffer_seek(client_buffer,buffer_seek_start,0);
-	buffer_write(client_buffer,buffer_u8,network.player_command);
+	buffer_write(client_buffer,buffer_u8,network.server_command);
 	buffer_write(client_buffer,buffer_string,mc_game.client_username);
 	buffer_write(client_buffer,buffer_string,str);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));

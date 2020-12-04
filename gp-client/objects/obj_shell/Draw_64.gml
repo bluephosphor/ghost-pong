@@ -55,7 +55,7 @@ surface_set_target(shellSurface);
 	draw_set_alpha(1);
 surface_reset_target();
 
-if (isOpen) {
+if (gamestate == SHELL) {
 	var yPos = 0;
 	switch (screenAnchorPoint) {
 	case "top": yPos = anchorMargin; break;
