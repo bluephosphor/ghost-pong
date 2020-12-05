@@ -8,6 +8,7 @@ enum input_packet{
 enum state {
 	normal,
 	teleport,
+	hitstun,
 }
 
 //id variables

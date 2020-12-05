@@ -84,15 +84,29 @@ function received_packet(buffer){
 			_player.in_attack	= _attack;
 			break;
 		case network.ball_update:
-			var _ball_x = buffer_read(buffer,buffer_f32);
-			var _ball_y = buffer_read(buffer,buffer_f32);
-			var _ball_speeding = buffer_read(buffer,buffer_bool);
-			var _ball_last_hit = buffer_read(buffer,buffer_u8);
+			var _ball_x			= buffer_read(buffer,buffer_f32);
+			var _ball_y			= buffer_read(buffer,buffer_f32);
+			var _ball_speeding	= buffer_read(buffer,buffer_bool);
+			var _ball_last_hit	= buffer_read(buffer,buffer_u8);
 			
-			ball.x = _ball_x;
-			ball.y = _ball_y;
-			ball.speeding = _ball_speeding;
-			ball.last_hit = _ball_last_hit;
+			ball.x			= _ball_x;
+			ball.y			= _ball_y;
+			ball.speeding	= _ball_speeding;
+			ball.last_hit	= _ball_last_hit;
+			break;
+		case network.player_hitstun:
+			var _sock		= buffer_read(buffer,buffer_u8);
+			var _strength	= buffer_read(buffer,buffer_u8);
+			var _x_inf		= buffer_read(buffer,buffer_s8);
+			var _y_inf		= buffer_read(buffer,buffer_s8);
+			var _player		= socket_to_instanceid[? _sock];
+			with (_player){
+				spd.x	= _x_inf;
+				spd.y	= _y_inf;
+				hitstun = clamp(_strength,15,60);
+				//hitstun = max(25,ceil(max(abs(spd.x),abs(spd.y) * 10)));
+			}
+			
 			break;
 	}
 }

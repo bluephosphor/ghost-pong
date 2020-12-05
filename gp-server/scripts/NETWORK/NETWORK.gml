@@ -136,6 +136,21 @@ function send_command(str){
 	}
 }
 
+function send_hitstun(player,strength,x_inf,y_inf){
+	
+	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_write(server_buffer,buffer_u8,network.player_hitstun);
+	buffer_write(server_buffer,buffer_u8,player);
+	buffer_write(server_buffer,buffer_u8,strength);
+	buffer_write(server_buffer,buffer_s8,x_inf);
+	buffer_write(server_buffer,buffer_s8,y_inf);
+	var i = 0; repeat (ds_list_size(socket_list)){
+		var _socket = socket_list[| i];
+		network_send_packet(_socket,server_buffer,buffer_tell(server_buffer));
+		i++;
+	}
+}
+
 function network_player_join(username){
 	
 	//create obj_player in server

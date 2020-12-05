@@ -1,0 +1,19 @@
+{
+    
+    "client-instructions": 
+    [
+        "input your server host's public ip into the 'host-ip' section of this document", 
+        "after the colon and in-between the quotes",
+    ],  
+    
+    "host-instructions": 
+    [
+        "forward port 682 on your router",
+        "then tell your client player(s) your public ip",
+    ],
+    
+    "host_ip": "75.188.243.178",
+
+    "port": 682
+
+}
