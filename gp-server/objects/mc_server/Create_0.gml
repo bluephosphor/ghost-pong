@@ -13,7 +13,8 @@ enum network{
 port = 682;
 max_clients = 6;
 
-network_create_server(network_socket_tcp,port,max_clients);
+var _connected = network_create_server(network_socket_tcp,port,max_clients);
+var _str = (_connected >= 0)? "successfully connected." : "connection was unsuccessful!";
 
 globalvar server, shell, server_buffer, socket_list, ball, hitbox_data, view_width, view_height, colors;
 
@@ -21,6 +22,8 @@ sh_pixelscale([-1,"3"]);
 server = id;
 shell  = instance_create_layer(0,0,layer,obj_shell);
 shell.open();
+
+ds_list_add(shell.output,_str);
 
 server_buffer			= buffer_create(1024,buffer_fixed,1);
 socket_list				= ds_list_create();

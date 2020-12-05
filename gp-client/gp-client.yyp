@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"PLAYER_STATES","path":"scripts/PLAYER_STATES/PLAYER_STATES.yy",},"order":4,},
     {"id":{"name":"spr_ghost_hands","path":"sprites/spr_ghost_hands/spr_ghost_hands.yy",},"order":0,},
+    {"id":{"name":"spr_background_patterns","path":"sprites/spr_background_patterns/spr_background_patterns.yy",},"order":5,},
     {"id":{"name":"spr_ghost_face_4","path":"sprites/spr_ghost_face_4/spr_ghost_face_4.yy",},"order":4,},
     {"id":{"name":"font_console","path":"fonts/font_console/font_console.yy",},"order":0,},
     {"id":{"name":"r_menu","path":"rooms/r_menu/r_menu.yy",},"order":1,},
@@ -9,6 +10,7 @@
     {"id":{"name":"mc_client","path":"objects/mc_client/mc_client.yy",},"order":0,},
     {"id":{"name":"spr_ghost_face_1","path":"sprites/spr_ghost_face_1/spr_ghost_face_1.yy",},"order":1,},
     {"id":{"name":"spr_hb_container","path":"sprites/spr_hb_container/spr_hb_container.yy",},"order":4,},
+    {"id":{"name":"PATTERN_GENERATOR","path":"scripts/PATTERN_GENERATOR/PATTERN_GENERATOR.yy",},"order":5,},
     {"id":{"name":"spr_ghost_1","path":"sprites/spr_ghost_1/spr_ghost_1.yy",},"order":0,},
     {"id":{"name":"sh_outline","path":"shaders/sh_outline/sh_outline.yy",},"order":0,},
     {"id":{"name":"obj_shell","path":"objects/obj_shell/obj_shell.yy",},"order":2,},

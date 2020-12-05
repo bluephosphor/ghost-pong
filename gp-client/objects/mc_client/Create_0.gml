@@ -10,7 +10,7 @@ enum network{
 	move,
 }
 
-globalvar client, connected, client_buffer, shell, colors, ball;
+globalvar client, connected, client_buffer, shell, ball;
 
 var _json		= json_parse(load_string_from_file("EDIT-ME.txt"));
 
@@ -20,7 +20,6 @@ connected		= network_connect(client,_json.host_ip,_json.port); //local IPv4: "19
 client_buffer	= buffer_create(1024,buffer_fixed,1);
 shell			= instance_create_layer(0,0,layer,obj_shell);
 ball			= instance_create_layer(room_width div 2,room_height div 2,layer,obj_ball);
-colors			= [c_black,c_red,c_aqua,c_yellow,c_green,c_orange,c_fuchsia];
 
 delete _json;
 
