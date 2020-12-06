@@ -17,3 +17,17 @@ sh_pixelscale([-1,"3"]);
 alarm[0] = 1;
 
 depth += 10;
+
+
+//Instance Variables
+port = 682;
+socket = network_create_socket(network_socket_tcp);
+server_address = "75.188.243.178";
+ping = 0;
+ping_step = 0;
+ping_timeout = room_speed * 3;
+
+//Set config.
+network_set_timeout(socket, 2000, 2000);
+
+database_connected = network_connect_raw(socket,server_address,port);
