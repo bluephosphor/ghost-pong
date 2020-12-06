@@ -9,3 +9,14 @@ c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj
 c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.exe
 c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.pdb
 c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp_database.FormMain.resources
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\bin\Debug\gp-database.exe.config
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp-database.exe
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp-database.pdb
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\bin\Debug\gp.mdf
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\bin\Debug\gp_log.ldf
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\bin\Debug\gp-database.exe
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\bin\Debug\gp-database.pdb
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp-database.csprojResolveAssemblyReference.cache
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp_database.FormMain.resources
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp_database.Properties.Resources.resources
+C:\Users\bow68\Documents\GameMakerStudio2\ghost-pong\gp-database\gp-database\obj\Debug\gp-database.csproj.GenerateResource.Cache

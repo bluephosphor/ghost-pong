@@ -5,6 +5,12 @@ pattern_generator(0,0,spr_background_patterns,room_width,room_height,800,bg_colo
 
 if (room != r_menu) exit;
 
+var _c = (database_connected >= 0) ? c_green : c_red;
+
+var _str = "matchmaking server status: ";
+draw_text(room_width-string_width(_str)-8, room_height-8,_str);
+draw_circle_color(room_width-6,room_height-6,4,_c,_c,false);
+
 draw_set_font(font_console);
 draw_set_halign(fa_center);
 draw_set_color(c_white)
