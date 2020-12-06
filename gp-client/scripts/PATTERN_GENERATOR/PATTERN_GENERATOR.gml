@@ -21,7 +21,7 @@ function pattern_generator(x,y,spr,width,height,steps,color_array){
 			_c  = merge_color(_c1,_c2, _cc - floor(_cc));
 			
 			_si = floor(i / steps * _spr_num); 
-			_r  = choose(0,180); //90 * irandom(3);
+			_r  = 90 * irandom(3);
 			_a  = clamp((i / steps * 1),0.5,1);
 			
 			draw_sprite_ext(spr,_si,_xx,_yy,_scale,_scale,_r,_c,_a);
