@@ -37,7 +37,6 @@
             this.txt_client_name = new System.Windows.Forms.TextBox();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_delete_client = new System.Windows.Forms.Button();
-            this.list_log = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.gpDataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,24 +117,12 @@
             this.btn_delete_client.UseVisualStyleBackColor = true;
             this.btn_delete_client.Click += new System.EventHandler(this.btn_delete_client_Click);
             // 
-            // list_log
-            // 
-            this.list_log.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.list_log.BackColor = System.Drawing.SystemColors.WindowText;
-            this.list_log.ForeColor = System.Drawing.SystemColors.Window;
-            this.list_log.FormattingEnabled = true;
-            this.list_log.Location = new System.Drawing.Point(266, 16);
-            this.list_log.Name = "list_log";
-            this.list_log.Size = new System.Drawing.Size(245, 264);
-            this.list_log.TabIndex = 8;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(523, 286);
-            this.Controls.Add(this.list_log);
+            this.ClientSize = new System.Drawing.Size(271, 290);
             this.Controls.Add(this.btn_delete_client);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.txt_client_name);
@@ -164,7 +151,6 @@
         private System.Windows.Forms.TextBox txt_client_name;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_delete_client;
-        private System.Windows.Forms.ListBox list_log;
     }
 }
 

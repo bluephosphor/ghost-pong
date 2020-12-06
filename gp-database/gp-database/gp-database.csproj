@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="buffer.cs" />
     <Compile Include="form-main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +75,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="server.cs" />
     <EmbeddedResource Include="form-main.resx">
       <DependentUpon>form-main.cs</DependentUpon>
     </EmbeddedResource>
