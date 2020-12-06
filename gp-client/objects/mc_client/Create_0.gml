@@ -24,3 +24,4 @@ ball			= instance_create_layer(room_width div 2,room_height div 2,layer,obj_ball
 delete _json;
 
 socket_to_instanceid = ds_map_create();
+

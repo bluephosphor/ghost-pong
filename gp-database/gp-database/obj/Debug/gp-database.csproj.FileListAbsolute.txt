@@ -1,0 +1,11 @@
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\bin\Debug\gp-database.exe.config
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\bin\Debug\gp.mdf
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\bin\Debug\gp_log.ldf
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\bin\Debug\gp-database.exe
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\bin\Debug\gp-database.pdb
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.csprojResolveAssemblyReference.cache
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp_database.Properties.Resources.resources
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.csproj.GenerateResource.Cache
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.exe
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp-database.pdb
+c:\users\bow68\documents\visual studio 2015\Projects\gp-database\gp-database\obj\Debug\gp_database.FormMain.resources
