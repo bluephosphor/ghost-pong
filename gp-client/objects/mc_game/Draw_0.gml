@@ -1,6 +1,6 @@
 
 
-pattern_generator(0,0,spr_background_patterns,room_width,room_height,800,bg_colors);
+pattern_generator(0,0,spr_background_patterns,room_width,room_height,400,bg_colors);
 
 
 if (room != r_menu) exit;
