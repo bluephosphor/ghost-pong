@@ -2,16 +2,16 @@ pattern_generator(0,0,spr_background_patterns,room_width,room_height,400,bg_colo
 
 switch(room){
 	case r_menu:
-		var i = 0, _draw_index = 0; _str = ""; repeat(array_length(matchmaking_list)){
-			var _entry = matchmaking_list[i];
-			if (_entry.is_server){
-				draw_text(8,8 + (12*_draw_index++),_entry.ip);
-			}
+		draw_text(8,8, "servers online:");
+		var i = 0, _str = "", _c; repeat(array_length(server_list)){
+			_c = (i == menu_index) ? c_red : c_white;
+			var _entry = server_list[i];
+			draw_text_color(8,16 + (12*i),_entry.ip,_c,_c,_c,_c,1);
 			i++;
 		}
 		
 		var _c = matchmaking_connected ? c_green : c_red;
-		var _str = "ping_count: " + string(ping_count) + " | matchmaking server status: ";
+		var _str = "matchmaking server status: ";
 		draw_circle_color(room_width - 6, room_height - 6, 4, _c,_c, false);
 		draw_text(room_width - 8 - string_width(_str), room_height - 10, _str);
 		break;
@@ -21,7 +21,7 @@ switch(room){
 		draw_set_halign(fa_center);
 		draw_set_color(c_white)
 
-		draw_text(room_width div 2,room_height div 2 - 16,"Please enter a username.\n(Enter to confirm.)");
+		draw_text(room_width div 2,room_height div 2 - 16,"please enter a username.\n(enter to confirm.)");
 		draw_text_ext_transformed(room_width/2,room_height div 2 + 8,keyboard_string,20,room_width,2,2,0);
 
 		draw_set_halign(fa_left);

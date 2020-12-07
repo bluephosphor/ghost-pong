@@ -3,7 +3,7 @@ enum matchmaking{
 	update		= 102,
 }
 
-globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell;
+globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, selected_server;
 
 #macro ACTIONABLE	0
 #macro SHELL		1
@@ -30,12 +30,14 @@ matchmaking_connected = false;
 matchmaking_port = 642;
 matchmaking_socket = network_create_socket(network_socket_tcp);
 matchmaking_server_address = "75.188.243.178";
-matchmaking_list = [];
+server_list = [];
+menu_index = 0;
+
+selected_server = "";
+
 ping = 0;
 ping_step = 0;
 ping_timeout = room_speed * 3;
-
-ping_count = 0;
 
 //set config
 network_set_timeout(matchmaking_socket, 2000, 2000);

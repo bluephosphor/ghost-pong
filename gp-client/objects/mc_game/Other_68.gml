@@ -28,8 +28,14 @@ switch (type_event){
 				buffer_delete(_buff);
 				break;
 			case matchmaking.update:
-				ping_count++;
-				matchmaking_list = json_parse(buffer_read(_buffer,buffer_string));
+				var _list = json_parse(buffer_read(_buffer,buffer_string));
+				var _len  = array_length(_list);
+				server_list = [];
+				var i = 0, j = 0; repeat(_len){
+					if (_list[i].is_server) server_list[j++] = _list[i];
+					i++;
+				}
+				menu_index = wrap_value(menu_index,0,_len - 1);
 				break;
 		}
 		break;

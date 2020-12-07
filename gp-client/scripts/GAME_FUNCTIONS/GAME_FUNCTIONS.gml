@@ -65,6 +65,14 @@ function approach(a, b, amount){
 	return a;
 }
 
+function wrap_value(value,min,max){
+	
+	if (value > max) return min;
+	if (value < min) return max;
+	
+	return value;
+}
+
 function trail_sprite(parent_id, decrement) constructor{
 	self.x				= parent_id.x;
 	self.y				= parent_id.y;

@@ -39,5 +39,14 @@ function sh_disconnect(args){
 	
 	network_destroy(client);
 	gamestate = PREGAME;
+	selected_server = "";
 	room_goto(r_menu);
+}
+
+function sh_pattern_regen(args){
+	with (mc_game){
+		surface_free(pattern_surf);
+		pattern_surf = noone;
+	}
+	return "backround pattern regenerated";
 }
