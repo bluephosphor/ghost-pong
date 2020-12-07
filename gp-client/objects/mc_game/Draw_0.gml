@@ -3,7 +3,8 @@ pattern_generator(0,0,spr_background_patterns,room_width,room_height,400,bg_colo
 switch(room){
 	case r_menu:
 		var i = 0; repeat(array_length(matchmaking_list)){
-			draw_text(8,8,matchmaking_list[i].username + " : " + matchmaking_list[i].ip);
+			draw_text(8,8 + (12*i),matchmaking_list[i].username + " : " + matchmaking_list[i].ip);
+			i++;
 		}
 		
 		var _c = matchmaking_connected ? c_green : c_red;
