@@ -16,3 +16,8 @@ function approach(a, b, amount){
 	}
 	return a;
 }
+
+function log(str){
+	ds_list_add(shell.output, str);
+	show_debug_message(str);
+}

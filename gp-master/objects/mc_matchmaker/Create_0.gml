@@ -21,9 +21,10 @@ server_buffer	= buffer_create(1024,buffer_fixed,1);
 socket_data		= [];
 
 function client(socket) constructor{
-	id = socket;
-	username = undefined;
-	ip = undefined;
+	id			= socket;
+	username	= undefined;
+	ip			= undefined;
+	is_server	= undefined;
 }
 
 alarm[0] = 60; //ping timer

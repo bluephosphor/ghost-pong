@@ -14,14 +14,11 @@ port = 682;
 max_clients = 6;
 
 var _connected = network_create_server(network_socket_tcp,port,max_clients);
-var _str = (_connected >= 0)? "successfully connected." : "connection was unsuccessful!";
+var _str = (_connected >= 0)? "local server online." : "local server connection was unsuccessful!";
 
 globalvar server, shell, server_buffer, socket_list, ball, hitbox_data, view_width, view_height, colors;
 
-sh_pixelscale([-1,"3"]);
 server = id;
-shell  = instance_create_layer(0,0,layer,obj_shell);
-shell.open();
 
 ds_list_add(shell.output,_str);
 
@@ -40,4 +37,3 @@ player_spawns[6]	= new vec2(room_width * 0.75, room_height * 0.5);
 colors				= [c_black,c_red,c_blue,c_yellow,c_green,c_orange,c_fuchsia];
 
 ball.init();
-alarm[0] = 1;
