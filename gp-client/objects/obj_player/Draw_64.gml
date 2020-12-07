@@ -1,6 +1,6 @@
 if (gamestate == ACTIONABLE){
 	//positions baybeeeeeeee
-	var _draw_x		= (room_width / 6) * (socket - 1);
+	var _draw_x		= (room_width / 6) * (player_number - 1);
 	var _offset		= 8;
 	var _bar_width	= 40;
 	var _margin		= 2;

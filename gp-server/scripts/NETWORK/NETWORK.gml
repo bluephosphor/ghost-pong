@@ -156,7 +156,7 @@ function network_player_join(username){
 	//create obj_player in server
 	var _player = instance_create_layer(player_spawns[socket].x,player_spawns[socket].y,layer,obj_player);
 	_player.username = username; //give player username
-	_player.image_blend = colors[socket]; //set player color
+	_player.image_blend = colors[socket-1]; //set player color
 	_player.mysocket = socket;
 	
 	//add instance id of player to socket map

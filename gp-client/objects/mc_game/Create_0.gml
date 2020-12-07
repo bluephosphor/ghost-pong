@@ -3,7 +3,7 @@ enum matchmaking{
 	update		= 102,
 }
 
-globalvar debug, gamestate, colors, matchmaking_connected, client_ip;
+globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell;
 
 #macro ACTIONABLE	0
 #macro SHELL		1

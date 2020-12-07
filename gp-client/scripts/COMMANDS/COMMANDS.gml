@@ -32,3 +32,12 @@ function sh_ballreset(args){
 	send_command(args[0]);
 	return "ballreset command sent to SERVER..."
 }
+
+function sh_disconnect(args){
+	if (room != r_game) return "not in server..."
+	shell.close();
+	
+	network_destroy(client);
+	gamestate = PREGAME;
+	room_goto(r_menu);
+}

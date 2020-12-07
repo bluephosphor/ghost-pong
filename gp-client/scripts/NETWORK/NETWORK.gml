@@ -23,7 +23,8 @@ function received_packet(buffer){
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
 			_player.username = _username;
-			_player.image_blend = colors[_socket];
+			_player.player_number = _socket - 1;
+			_player.image_blend = colors[_socket - 1];
 			
 			ds_map_add(socket_to_instanceid,_socket,_player);
 			break;

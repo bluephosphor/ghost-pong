@@ -1,3 +1,5 @@
+shell = id;
+
 shellSurface = surface_create(width, height);
 
 cursorPos = 1;

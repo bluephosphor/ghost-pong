@@ -8,7 +8,7 @@ if (gamestate == ACTIONABLE) {
 	if (self.keyComboPressed()) {
 		self.open();
 	}
-} else {
+} else if (gamestate == SHELL){
 	var prevConsoleString = consoleString;
 	
 	if (keyboard_check_pressed(vk_escape)) {
