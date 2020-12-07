@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"PLAYER_STATES","path":"scripts/PLAYER_STATES/PLAYER_STATES.yy",},"order":4,},
+    {"id":{"name":"r_start","path":"rooms/r_start/r_start.yy",},"order":2,},
     {"id":{"name":"spr_ghost_hands","path":"sprites/spr_ghost_hands/spr_ghost_hands.yy",},"order":0,},
     {"id":{"name":"spr_background_patterns","path":"sprites/spr_background_patterns/spr_background_patterns.yy",},"order":5,},
     {"id":{"name":"spr_ghost_face_4","path":"sprites/spr_ghost_face_4/spr_ghost_face_4.yy",},"order":4,},
@@ -42,6 +43,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
+    {"roomId":{"name":"r_start","path":"rooms/r_start/r_start.yy",},},
     {"roomId":{"name":"r_menu","path":"rooms/r_menu/r_menu.yy",},},
     {"roomId":{"name":"r_game","path":"rooms/r_game/r_game.yy",},},
   ],
