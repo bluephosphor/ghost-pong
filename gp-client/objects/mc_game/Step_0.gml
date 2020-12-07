@@ -12,7 +12,10 @@ switch(room){
 		
 		if (keyboard_check_pressed(vk_enter)){
 			//network_destroy(matchmaking_socket);
-			if (array_length(server_list) > 0) selected_server = server_list[menu_index].ip;
+			if (array_length(server_list) > 0) {
+				var _entry = server_list[menu_index];
+				selected_server = _entry.ip;
+			}
 			if (gamestate != SHELL and selected_server != ""){
 				gamestate = ACTIONABLE;
 				room_goto(r_game);

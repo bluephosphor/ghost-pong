@@ -111,6 +111,14 @@ function received_packet(buffer,socket){
 				i++;
 			}
 			break;
+			case matchmaking.update:
+				var _buff = buffer_create(64,buffer_fixed,1);
+				buffer_seek(_buff,buffer_seek_start,0);
+				buffer_write(_buff,buffer_u8,matchmaking.update);
+				buffer_write(_buff,buffer_string,players_online);
+				network_send_packet(mc_game.matchmaking_socket,_buff,buffer_tell(_buff));
+				buffer_delete(_buff);
+				break;
 	}
 }
 

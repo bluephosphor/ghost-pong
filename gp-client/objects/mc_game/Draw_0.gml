@@ -3,10 +3,12 @@ pattern_generator(0,0,spr_background_patterns,room_width,room_height,400,bg_colo
 switch(room){
 	case r_menu:
 		draw_text(8,8, "servers online:");
-		var i = 0, _str = "", _c; repeat(array_length(server_list)){
+		var i = 0, _str, _entry, _c; repeat(array_length(server_list)){
 			_c = (i == menu_index) ? c_red : c_white;
-			var _entry = server_list[i];
-			draw_text_color(8,20 + (12*i),_entry.ip,_c,_c,_c,_c,1);
+			_entry = server_list[i];
+			_str = _entry.ip;
+			if (variable_struct_exists(_entry,"players_online")) _str += " (" + string(_entry.players_online) + "/6) in game.";
+			draw_text_color(8,20 + (12*i),_str,_c,_c,_c,_c,1);
 			i++;
 		}
 		

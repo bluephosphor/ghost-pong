@@ -31,10 +31,6 @@ switch (type_event){
 				log("successfully hosted game on matchmaking server!");
 				room_goto(R_SERVER);
 				break;
-			case matchmaking.update:
-				ping_count++;
-				matchmaking_list = json_parse(buffer_read(_buffer,buffer_string));
-				break;
 		}
 		break;
 
