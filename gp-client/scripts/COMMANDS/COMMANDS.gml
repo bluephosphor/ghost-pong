@@ -50,3 +50,11 @@ function sh_pattern_regen(args){
 	}
 	return "backround pattern regenerated";
 }
+
+function sh_direct_connect(args){
+	if (room != r_menu) return "you must be in the menu to use this command...";
+	selected_server = (array_length(args) > 1) ? args[1] : editme_loaded.host_ip; 
+	gamestate = ACTIONABLE;
+	room_goto(r_game);
+	
+}

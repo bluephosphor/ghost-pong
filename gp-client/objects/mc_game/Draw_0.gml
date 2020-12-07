@@ -6,7 +6,7 @@ switch(room){
 		var i = 0, _str = "", _c; repeat(array_length(server_list)){
 			_c = (i == menu_index) ? c_red : c_white;
 			var _entry = server_list[i];
-			draw_text_color(8,16 + (12*i),_entry.ip,_c,_c,_c,_c,1);
+			draw_text_color(8,20 + (12*i),_entry.ip,_c,_c,_c,_c,1);
 			i++;
 		}
 		

@@ -53,6 +53,7 @@ surface_set_target(shellSurface);
 		}
 	}
 	draw_set_alpha(1);
+	draw_set_color(c_white);
 surface_reset_target();
 
 if (gamestate == SHELL) {

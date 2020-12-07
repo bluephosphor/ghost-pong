@@ -3,7 +3,7 @@ enum matchmaking{
 	update		= 102,
 }
 
-globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, selected_server;
+globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, selected_server, editme_loaded;
 
 #macro ACTIONABLE	0
 #macro SHELL		1
@@ -24,6 +24,7 @@ alarm[0] = 1;
 depth += 10;
 
 ip_request = http_get("http://ipv4bot.whatismyipaddress.com/");
+editme_loaded = json_parse(load_string_from_file("EDIT-ME.txt"));
 
 //connect to the matchmaking server
 matchmaking_connected = false;

@@ -4,7 +4,7 @@ if (!surface_exists(shellSurface)) {
 	shellSurface = surface_create(width, height);
 }
 
-if (gamestate == ACTIONABLE) {
+if (gamestate == ACTIONABLE or gamestate == PREGAME) {
 	if (self.keyComboPressed()) {
 		self.open();
 	}
