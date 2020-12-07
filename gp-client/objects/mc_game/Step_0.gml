@@ -2,7 +2,7 @@ switch(room){
 	case r_game: exit;
 	case r_menu:
 		if (keyboard_check_pressed(vk_enter)){
-			//network_destroy(matchmaking_socket);
+			network_destroy(matchmaking_socket);
 			gamestate = ACTIONABLE;
 			room_goto(r_game);
 		}

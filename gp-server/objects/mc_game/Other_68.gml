@@ -1,3 +1,5 @@
+if (room != R_INIT) exit;
+
 type_event = async_load[? "type"];
 
 switch (type_event){
