@@ -4,7 +4,7 @@ switch(type_event){
 	case network_type_connect:
 		//get our client socket number
 		var _socket = async_load[? "socket"];
-		ds_list_add(socket_data, new client(_socket));
+		array_push(socket_data, new client(_socket));
 		
 		//send packet to client requesting their info
 		buffer_seek(server_buffer,buffer_seek_start,0);
@@ -15,8 +15,11 @@ switch(type_event){
 		break;
 	case network_type_disconnect:
 		//remove player info from list and delete struct
-		var _client = find_socket_struct(async_load[? "socket"]);
-		ds_list_delete(socket_data,ds_list_find_index(socket_data,_client));
+		var _result = find_socket_struct(async_load[? "socket"]);
+		var _client = _result.struct;
+		var _index  = _result.index;
+		socket_data[_index] = -1;
+		socket_data = array_shrink(socket_data,-1);
 		log("client id:" + string(_client.id) + " disconnected.");
 		delete _client;
 		break;

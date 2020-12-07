@@ -18,7 +18,7 @@ var _str = (_connected >= 0)? "matchmaking server started." : "connection was un
 ds_list_add(shell.output,_str);
 
 server_buffer	= buffer_create(1024,buffer_fixed,1);
-socket_data		= ds_list_create();
+socket_data		= [];
 
 function client(socket) constructor{
 	id = socket;

@@ -3,6 +3,7 @@
     {"id":{"name":"NETWORK","path":"scripts/NETWORK/NETWORK.yy",},"order":0,},
     {"id":{"name":"mc_matchmaker","path":"objects/mc_matchmaker/mc_matchmaker.yy",},"order":1,},
     {"id":{"name":"obj_shell","path":"objects/obj_shell/obj_shell.yy",},"order":0,},
+    {"id":{"name":"FUNCTIONS","path":"scripts/FUNCTIONS/FUNCTIONS.yy",},"order":1,},
     {"id":{"name":"font_console","path":"fonts/font_console/font_console.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
