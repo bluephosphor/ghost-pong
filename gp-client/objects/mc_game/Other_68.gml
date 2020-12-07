@@ -28,7 +28,7 @@ switch (type_event){
 				break;
 			case matchmaking.update:
 				ping_count++;
-				matchmaking_list = buffer_read(_buffer,buffer_string);
+				matchmaking_list = json_parse(buffer_read(_buffer,buffer_string));
 				break;
 		}
 		break;
