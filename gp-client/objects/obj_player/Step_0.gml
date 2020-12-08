@@ -6,6 +6,11 @@ trail_sprite_update();
 
 if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
+if (keyboard_check_pressed(input[key.up]))	  last_dir = input[key.up];
+if (keyboard_check_pressed(input[key.down]))  last_dir = input[key.down];
+if (keyboard_check_pressed(input[key.left]))  last_dir = input[key.left];
+if (keyboard_check_pressed(input[key.right])) last_dir = input[key.right];
+
 if (gamestate == ACTIONABLE and keyboard_update()){
 	input_sender[input_packet.move_x]  = keyboard_check(input[key.right]) - keyboard_check(input[key.left]);
 	input_sender[input_packet.move_y]  = keyboard_check(input[key.down]) - keyboard_check(input[key.up]);

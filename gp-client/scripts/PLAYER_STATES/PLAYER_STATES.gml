@@ -51,10 +51,15 @@ function playerstate_teleport(){
 		spd.x = lengthdir_x(max_speed.teleport,_dir);
 		spd.y = lengthdir_y(max_speed.teleport,_dir);
 	}
-
+	if (in_attack)  {
+		if (move.x != 0) image_xscale = move.x;
+		state = playerstate_attack;
+	}
+	if (teleport_counter == teleport_length) or (!in_special) {
+		if (move.x != 0) image_xscale = move.x;
+		state = playerstate_normal;
+	}
 	if (myhands.animation_ended) myhands.animation_ended = false;
-	if (in_attack)  state = playerstate_attack;
-	if (teleport_counter == teleport_length) or (!in_special) state = playerstate_normal;
 	
 	move_and_collide();
 }

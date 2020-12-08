@@ -9,7 +9,7 @@ globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, sel
 #macro SHELL		1
 #macro PREGAME		2
 
-debug			= false;
+debug			= true;
 gamestate		= PREGAME;
 colors			= [c_black,c_red,c_aqua,c_yellow,c_green,c_orange,c_fuchsia];
 

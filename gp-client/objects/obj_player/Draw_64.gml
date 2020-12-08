@@ -26,7 +26,7 @@ if (gamestate == ACTIONABLE){
 
 if (!debug) exit;
 
-var _str = "| tpcounter: "+ string(teleport_counter) + "\n| state: ";
+var _str = "last_dir: "+ string(last_dir) + "\n| state: ";
 
 switch(state){
 	case playerstate_normal:	_str += "normal"; break;
