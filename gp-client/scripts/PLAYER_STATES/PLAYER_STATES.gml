@@ -96,9 +96,9 @@ function playerstate_hitstun(){
 	}
 }
 
-function hands(spr) constructor {
+function hands(spr,attack_spd) constructor {
 	idle_speed			= 15; //<
-	attack_speed		= 4;  //< steps-per-frame
+	attack_speed		= attack_spd;  //< steps-per-frame
 	idle_frame_end		= 1;
 	attack_frame_end	= sprite_get_number(spr);
 	curr_frame			= 0;

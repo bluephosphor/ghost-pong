@@ -4,11 +4,11 @@ username = "";
 name_height_offset = 16;
 socket = -1;
 player_number = 0;
-equipped = spr_ghost_hands;
+equipped = spr_ghost_sword;
 in_special = 0;
 in_attack = 0;
 
-myhands = new hands(equipped);
+myhands = new hands(equipped,3);
 
 //movement variables
 move = new vec2(0,0);
