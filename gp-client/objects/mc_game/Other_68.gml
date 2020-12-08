@@ -35,7 +35,7 @@ switch (type_event){
 					if (_list[i].is_server) server_list[j++] = _list[i];
 					i++;
 				}
-				menu_index = wrap_value(menu_index,0,_len - 1);
+				menu_index_x = wrap_value(menu_index_x,0,_len - 1);
 				break;
 		}
 		break;

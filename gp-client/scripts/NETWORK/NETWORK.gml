@@ -12,6 +12,7 @@ function received_packet(buffer){
 			buffer_seek(client_buffer,buffer_seek_start,0);
 			buffer_write(client_buffer,buffer_u8,network.player_establish);
 			buffer_write(client_buffer,buffer_string,mc_game.client_username);
+			buffer_write(client_buffer,buffer_u8,chosen_class);
 			network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 			break;
 		case network.player_connect:
@@ -19,12 +20,17 @@ function received_packet(buffer){
 			var _x = buffer_read(buffer,buffer_u16);
 			var _y = buffer_read(buffer,buffer_u16);
 			var _username = buffer_read(buffer,buffer_string);
+			var _class = buffer_read(buffer,buffer_u8);
 			
 			var _player = instance_create_layer(_x,_y,layer,obj_player);
 			_player.socket = _socket;
 			_player.username = _username;
+			_player.player_class = _class;
 			_player.player_number = _socket - 1;
 			_player.image_blend = colors[_socket - 1];
+			with (_player){
+				player_set_class(player_class);
+			}
 			
 			ds_map_add(socket_to_instanceid,_socket,_player);
 			break;

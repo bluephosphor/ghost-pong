@@ -16,7 +16,7 @@ max_clients = 6;
 var _connected = network_create_server(network_socket_tcp,port,max_clients);
 var _str = (_connected >= 0)? "local server online." : "local server connection was unsuccessful!";
 
-globalvar server, shell, server_buffer, socket_list, ball, hitbox_data, view_width, view_height, colors;
+globalvar server, shell, server_buffer, socket_list, ball, class_data, hitbox_list, view_width, view_height, colors;
 
 server = id;
 

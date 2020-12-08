@@ -4,7 +4,8 @@ function received_packet(buffer,socket){
 	switch(msgid){
 		case network.player_establish:
 			var _username = buffer_read(buffer,buffer_string);
-			network_player_join(_username);
+			var _class = buffer_read(buffer,buffer_u8);
+			network_player_join(_username,_class);
 			break;
 		case network.text: // chat
 			var _message = buffer_read(buffer,buffer_string) + ": " + buffer_read(buffer,buffer_string);
@@ -76,8 +77,10 @@ function received_packet(buffer,socket){
 				if (_attack) {
 					if (myhitbox = noone) {
 						myhitbox = instance_create_layer(_player.x,_player.y,layer,obj_hitbox);
-						myhitbox.sprite_index = spr_hitbox_punch;
+						myhitbox.sprite_index = class_data[_player.player_class].spr;
 						myhitbox.image_xscale = image_xscale;
+						myhitbox.step_limit = class_data[_player.player_class].spd;
+						myhitbox.anim_limit = sprite_get_number(class_data[_player.player_class].spr);
 						myhitbox.myplayer = id;
 						if (playerstate == state.teleport) tp_cooldown = 20;
 					}
@@ -159,11 +162,12 @@ function send_hitstun(player,strength,x_inf,y_inf){
 	}
 }
 
-function network_player_join(username){
+function network_player_join(username,_class){
 	
 	//create obj_player in server
 	var _player = instance_create_layer(player_spawns[socket].x,player_spawns[socket].y,layer,obj_player);
 	_player.username = username; //give player username
+	_player.player_class = _class;
 	_player.image_blend = colors[socket-1]; //set player color
 	_player.mysocket = socket;
 	
@@ -177,6 +181,7 @@ function network_player_join(username){
 	buffer_write(server_buffer,buffer_u16,_player.x);
 	buffer_write(server_buffer,buffer_u16,_player.y);
 	buffer_write(server_buffer,buffer_string,_player.username);
+	buffer_write(server_buffer,buffer_u8,_player.player_class);
 	network_send_packet(socket,server_buffer,buffer_tell(server_buffer));
 		
 	//send in-game clients to the connecting client
@@ -190,6 +195,7 @@ function network_player_join(username){
 			buffer_write(server_buffer,buffer_u16,_otherplayer.x);
 			buffer_write(server_buffer,buffer_u16,_otherplayer.y);
 			buffer_write(server_buffer,buffer_string,_otherplayer.username);
+			buffer_write(server_buffer,buffer_u8,_otherplayer.player_class);
 			network_send_packet(socket,server_buffer,buffer_tell(server_buffer));
 		}
 		i++;
@@ -205,6 +211,7 @@ function network_player_join(username){
 			buffer_write(server_buffer,buffer_u16,_player.x);
 			buffer_write(server_buffer,buffer_u16,_player.y);
 			buffer_write(server_buffer,buffer_string,_player.username);
+			buffer_write(server_buffer,buffer_u8,_player.player_class);
 			network_send_packet(_sock,server_buffer,buffer_tell(server_buffer));
 		}
 		i++;

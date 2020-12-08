@@ -3,7 +3,7 @@ enum matchmaking{
 	update		= 102,
 }
 
-globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, selected_server, editme_loaded;
+globalvar debug, gamestate, colors, matchmaking_connected, client_ip, shell, selected_server, editme_loaded, chosen_class;
 
 #macro ACTIONABLE	0
 #macro SHELL		1
@@ -32,9 +32,11 @@ matchmaking_port = 642;
 matchmaking_socket = network_create_socket(network_socket_tcp);
 matchmaking_server_address = "75.188.243.178";
 server_list = [];
-menu_index = 0;
+menu_index_x = 0;
+menu_index_y = 0;
 
 selected_server = "";
+chosen_class = 0;
 
 ping = 0;
 ping_step = 0;

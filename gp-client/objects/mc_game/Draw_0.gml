@@ -4,7 +4,7 @@ switch(room){
 	case r_menu:
 		draw_text(8,8, "servers online:");
 		var i = 0, _str, _entry, _c; repeat(array_length(server_list)){
-			_c = (i == menu_index) ? c_red : c_white;
+			_c = (i == menu_index_y) ? c_red : c_white;
 			_entry = server_list[i];
 			_str = _entry.ip;
 			if (variable_struct_exists(_entry,"players_online")) _str += " (" + string(_entry.players_online) + "/6) in game.";

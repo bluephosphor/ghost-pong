@@ -1,7 +1,11 @@
+if (myplayer = noone) exit;
+
 x = myplayer.x
 y = myplayer.y
 
-strength = hitbox_data[? sprite_index][image_index-1];
+animate_hitbox();
+
+strength = class_data[player_class].frames[image_index];
 
 var _inst = instance_place(x,y,obj_player);
 

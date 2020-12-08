@@ -1,0 +1,1 @@
+if (myhitbox != noone) instance_destroy(myhitbox);
