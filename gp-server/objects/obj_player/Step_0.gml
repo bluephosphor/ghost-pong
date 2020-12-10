@@ -7,3 +7,5 @@ switch(playerstate){
 		image_alpha = 0.3;
 		break;
 }
+
+if (startup_frames) startup_frames--;

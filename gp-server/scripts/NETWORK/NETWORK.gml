@@ -25,6 +25,8 @@ function received_packet(buffer,socket){
 		case network.move:
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
+			var _facing = buffer_read(buffer,buffer_s8);
+			var _state  = buffer_read(buffer,buffer_u8);
 			
 			var _player = socket_to_instanceid[? socket];
 			with (_player){
@@ -33,6 +35,7 @@ function received_packet(buffer,socket){
 				velocity.y = lengthdir_y(1,_dir) * abs(_move_y - y);
 				x = _move_x;
 				y = _move_y;
+				image_xscale = _facing;
 			}
 			
 			var _ball_speeding = ball.speeding;
@@ -46,6 +49,8 @@ function received_packet(buffer,socket){
 					buffer_write(server_buffer,buffer_u8,socket);
 					buffer_write(server_buffer,buffer_u16,_move_x);
 					buffer_write(server_buffer,buffer_u16,_move_y);
+					buffer_write(server_buffer,buffer_s8,_facing);
+					buffer_write(server_buffer,buffer_u8,_state);
 					buffer_write(server_buffer,buffer_f32,ball.x);
 					buffer_write(server_buffer,buffer_f32,ball.y);
 					buffer_write(server_buffer,buffer_bool,_ball_speeding);
@@ -66,13 +71,13 @@ function received_packet(buffer,socket){
 			}
 			break;
 		case network.player_input:
-			var _move_x  = buffer_read(buffer,buffer_s8);
-			var _move_y  = buffer_read(buffer,buffer_s8);
-			var _special = buffer_read(buffer,buffer_bool);
-			var _attack  = buffer_read(buffer,buffer_bool);
+			var _last_dir = buffer_read(buffer,buffer_u16);
+			var _move_x	  = buffer_read(buffer,buffer_s8);
+			var _move_y   = buffer_read(buffer,buffer_s8);
+			var _special  = buffer_read(buffer,buffer_bool);
+			var _attack   = buffer_read(buffer,buffer_bool);
 			
 			var _player = socket_to_instanceid[? socket];
-			if (_move_x != 0) _player.image_xscale = _move_x;
 			with (_player){
 				if (_attack) {
 					if (myhitbox = noone) {
@@ -84,8 +89,11 @@ function received_packet(buffer,socket){
 						myhitbox.myplayer = id;
 						if (playerstate == state.teleport) tp_cooldown = 20;
 					}
-				}
-				if(_special) {
+					if (playerstate == state.normal){
+						startup_frames = 3;
+						playerstate = state.attack;
+					}
+				} else if(_special) {
 					if (playerstate == state.normal){
 						tp_start.x = x;
 						tp_start.y = y;
@@ -103,9 +111,10 @@ function received_packet(buffer,socket){
 				
 			var i = 0; repeat (ds_list_size(socket_list)){
 				var _socket = socket_list[| i];
-				buffer_seek(server_buffer,buffer_seek_start,0);
+				buffer_seek (server_buffer,buffer_seek_start,0);
 				buffer_write(server_buffer,buffer_u8,network.player_input);
 				buffer_write(server_buffer,buffer_u8,socket);
+				buffer_write(server_buffer,buffer_u16,_last_dir);
 				buffer_write(server_buffer,buffer_s8,_move_x);
 				buffer_write(server_buffer,buffer_s8,_move_y);
 				buffer_write(server_buffer,buffer_bool,_special);
@@ -116,7 +125,7 @@ function received_packet(buffer,socket){
 			break;
 			case matchmaking.update:
 				var _buff = buffer_create(64,buffer_fixed,1);
-				buffer_seek(_buff,buffer_seek_start,0);
+				buffer_seek (_buff,buffer_seek_start,0);
 				buffer_write(_buff,buffer_u8,matchmaking.update);
 				buffer_write(_buff,buffer_string,players_online);
 				network_send_packet(mc_game.matchmaking_socket,_buff,buffer_tell(_buff));
@@ -126,7 +135,7 @@ function received_packet(buffer,socket){
 }
 
 function send_string(str){
-	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_seek (server_buffer,buffer_seek_start,0);
 	buffer_write(server_buffer,buffer_u8,network.text);
 	buffer_write(server_buffer,buffer_string,str);
 	var i = 0; repeat (ds_list_size(socket_list)){
@@ -137,7 +146,7 @@ function send_string(str){
 }
 
 function send_command(str){
-	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_seek (server_buffer,buffer_seek_start,0);
 	buffer_write(server_buffer,buffer_u8,network.server_command);
 	buffer_write(server_buffer,buffer_string,str);
 	var i = 0; repeat (ds_list_size(socket_list)){
@@ -149,7 +158,7 @@ function send_command(str){
 
 function send_hitstun(player,strength,x_inf,y_inf){
 	
-	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_seek (server_buffer,buffer_seek_start,0);
 	buffer_write(server_buffer,buffer_u8,network.player_hitstun);
 	buffer_write(server_buffer,buffer_u8,player);
 	buffer_write(server_buffer,buffer_u8,strength);
@@ -175,7 +184,7 @@ function network_player_join(username,_class){
 	ds_map_add(socket_to_instanceid,socket,_player);
 		
 	//create obj_player for connecting client
-	buffer_seek(server_buffer,buffer_seek_start,0);
+	buffer_seek (server_buffer,buffer_seek_start,0);
 	buffer_write(server_buffer,buffer_u8,network.player_connect);
 	buffer_write(server_buffer,buffer_u8,socket);
 	buffer_write(server_buffer,buffer_u16,_player.x);
@@ -189,7 +198,7 @@ function network_player_join(username,_class){
 		var _sock = socket_list[| i];
 		if (_sock != socket){
 			var _otherplayer = socket_to_instanceid[? _sock];
-			buffer_seek(server_buffer,buffer_seek_start,0);
+			buffer_seek (server_buffer,buffer_seek_start,0);
 			buffer_write(server_buffer,buffer_u8,network.player_connect);
 			buffer_write(server_buffer,buffer_u8,_sock);
 			buffer_write(server_buffer,buffer_u16,_otherplayer.x);
@@ -205,7 +214,7 @@ function network_player_join(username,_class){
 	var i = 0; repeat (ds_list_size(socket_list)){
 		var _sock = socket_list[| i];
 		if (_sock != socket){
-			buffer_seek(server_buffer,buffer_seek_start,0);
+			buffer_seek (server_buffer,buffer_seek_start,0);
 			buffer_write(server_buffer,buffer_u8,network.player_connect);
 			buffer_write(server_buffer,buffer_u8,socket);
 			buffer_write(server_buffer,buffer_u16,_player.x);

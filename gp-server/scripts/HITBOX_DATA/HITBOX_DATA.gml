@@ -1,8 +1,7 @@
 /*
 *  here we're just defining the "power" each hitbox sprite has per frame
 *  so when adding an attack we just count the sprite frames, and make
-*  an array setting values for each frame, then storing this in a map
-*  with the sprites index as the keys
+*  an array setting values for each frame.
 */
 
 enum class {

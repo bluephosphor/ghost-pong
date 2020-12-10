@@ -4,12 +4,14 @@ script_execute(state);
 animate_hands();
 trail_sprite_update();
 
+if (startup_frames > 0) startup_frames--;
+
 if (mc_client.socket_to_instanceid[? mysocket] != id) exit;
 
-if (keyboard_check_pressed(input[key.up]))	  last_dir = input[key.up];
-if (keyboard_check_pressed(input[key.down]))  last_dir = input[key.down];
-if (keyboard_check_pressed(input[key.left]))  last_dir = input[key.left];
-if (keyboard_check_pressed(input[key.right])) last_dir = input[key.right];
+if (keyboard_check_pressed(input[key.up]))	  last_dir = dir.up;
+if (keyboard_check_pressed(input[key.down]))  last_dir = dir.down;
+if (keyboard_check_pressed(input[key.left]))  last_dir = dir.left;
+if (keyboard_check_pressed(input[key.right])) last_dir = dir.right;
 
 if (gamestate == ACTIONABLE and keyboard_update()){
 	input_sender[input_packet.move_x]  = keyboard_check(input[key.right]) - keyboard_check(input[key.left]);
@@ -23,6 +25,7 @@ if (gamestate == ACTIONABLE and keyboard_update()){
 			//if so, send input buffer and update inputs_sent
 			buffer_seek(client_buffer,buffer_seek_start,0);
 			buffer_write(client_buffer,buffer_u8,network.player_input);
+			buffer_write(client_buffer,buffer_u16,last_dir);
 			buffer_write(client_buffer,buffer_s8,input_sender[input_packet.move_x]);
 			buffer_write(client_buffer,buffer_s8,input_sender[input_packet.move_y]);
 			buffer_write(client_buffer,buffer_bool,input_sender[input_packet.special]);
@@ -35,4 +38,4 @@ if (gamestate == ACTIONABLE and keyboard_update()){
 	}
 }
 
-send_pos(x,y);
+send_pos(x,y,image_xscale,state);

@@ -60,6 +60,9 @@ function received_packet(buffer){
 			var _move_x = buffer_read(buffer,buffer_u16);
 			var _move_y = buffer_read(buffer,buffer_u16);
 			
+			var _facing = buffer_read(buffer,buffer_s8);
+			var _state  = buffer_read(buffer,buffer_u8);
+			
 			var _ball_x = buffer_read(buffer,buffer_f32);
 			var _ball_y = buffer_read(buffer,buffer_f32);
 			var _ball_speeding = buffer_read(buffer,buffer_bool);
@@ -78,17 +81,19 @@ function received_packet(buffer){
 			
 			break;
 		case network.player_input:
-			var _sock	 = buffer_read(buffer,buffer_u8);
-			var _move_x  = buffer_read(buffer,buffer_s8);
-			var _move_y  = buffer_read(buffer,buffer_s8);
-			var _special = buffer_read(buffer,buffer_bool);
-			var _attack  = buffer_read(buffer,buffer_bool);
+			var _sock	  = buffer_read(buffer,buffer_u8);
+			var _last_dir = buffer_read(buffer,buffer_u16);
+			var _move_x   = buffer_read(buffer,buffer_s8);
+			var _move_y   = buffer_read(buffer,buffer_s8);
+			var _special  = buffer_read(buffer,buffer_bool);
+			var _attack   = buffer_read(buffer,buffer_bool);
 
-			_player				= socket_to_instanceid[? _sock];
-			_player.move.x		= _move_x;
-			_player.move.y		= _move_y;
-			_player.in_special	= _special;
-			_player.in_attack	= _attack;
+			_player						= socket_to_instanceid[? _sock];
+			_player.last_dir_recieved	= _last_dir;
+			_player.move.x				= _move_x;
+			_player.move.y				= _move_y;
+			_player.in_special			= _special;
+			_player.in_attack			= _attack;
 			break;
 		case network.ball_update:
 			var _ball_x			= buffer_read(buffer,buffer_f32);
@@ -134,11 +139,13 @@ function send_command(str){
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }
 
-function send_pos(_x,_y){
+function send_pos(_x,_y,_facing,_state){
 	buffer_seek(client_buffer,buffer_seek_start,0);
 	buffer_write(client_buffer,buffer_u8,network.move);
 	buffer_write(client_buffer,buffer_u16,_x);
 	buffer_write(client_buffer,buffer_u16,_y);
+	buffer_write(client_buffer,buffer_s8,_facing);
+	buffer_write(client_buffer,buffer_u8,_state);
 	network_send_packet(client,client_buffer,buffer_tell(client_buffer));
 }
 

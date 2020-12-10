@@ -2,6 +2,7 @@ if (myplayer = noone) exit;
 
 x = myplayer.x
 y = myplayer.y
+image_xscale = myplayer.image_xscale
 
 animate_hitbox();
 

@@ -1,3 +1,10 @@
+enum dir {
+	up		= 90,
+	down	= 270,
+	left	= 180,
+	right	= 0
+}
+
 //defining variables
 //image_alpha = 0.5;
 username = "";
@@ -17,7 +24,8 @@ accel =		{normal: 0.5,teleport: 1}
 max_speed = {normal: 4,	 teleport: 12};
 frict = 0.2;
 
-last_dir = vk_down;
+last_dir = dir.down;
+startup_frames = 0;
 
 teleport_length = 10;
 teleport_counter = 0;

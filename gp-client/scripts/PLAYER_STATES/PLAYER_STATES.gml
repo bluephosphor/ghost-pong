@@ -51,12 +51,13 @@ function playerstate_teleport(){
 		spd.x = lengthdir_x(max_speed.teleport,_dir);
 		spd.y = lengthdir_y(max_speed.teleport,_dir);
 	}
+	
+	
 	if (in_attack)  {
-		if (move.x != 0) image_xscale = move.x;
+		startup_frames = 3;
 		state = playerstate_attack;
 	}
 	if (teleport_counter == teleport_length) or (!in_special) {
-		if (move.x != 0) image_xscale = move.x;
 		state = playerstate_normal;
 	}
 	if (myhands.animation_ended) myhands.animation_ended = false;
@@ -65,6 +66,11 @@ function playerstate_teleport(){
 }
 
 function playerstate_attack(){
+	if (startup_frames){
+		//giving_player a small window to turn around out of teleport into attack
+		if (last_dir_recieved == dir.right) image_xscale = 1;
+		if (last_dir_recieved == dir.left)  image_xscale = -1;
+	}
 	face = 3
 	image_alpha		 = approach(image_alpha,1,phase_speed);
 	teleport_counter = approach(teleport_counter,0,1);
